@@ -79,7 +79,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
-
 " ====================
 " color scheme
 " ====================
