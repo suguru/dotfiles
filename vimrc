@@ -19,7 +19,13 @@ Bundle 'manalang/jshint.vim'
 " neocomplcache
 Bundle 'Shougo/neocomplcache'
 " Solarized color scheme
-Bundle "altercation/vim-colors-solarized"
+Bundle 'altercation/vim-colors-solarized'
+" CSS3
+Bundle 'hail2u/vim-css3-syntax'
+" Jade
+Bundle 'vim-scripts/jade.vim'
+" Stylus
+Bundle 'wavded/vim-stylus'
 
 " ====================
 " visual options
@@ -58,20 +64,30 @@ set fileformats=unix,dos,mac
 :nmap <C-N><C-N> <C-N><C-N> :set invnumber<CR>
 
 " ====================
+" Unite.vim
+" ====================
+let g:unite_enable_start_insert=1
+noremap :ub :<C-u>Unite file_mru -buffer-name=file_mru<CR>
+noremap :uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+noremap :ur :<C-u>Unite -buffer-name=register register<CR>
+noremap :um :<C-u>Unite file_mru<CR>
+noremap :uu :<C-u>Unite buffer file_mru<CR>
+noremap :ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+" ====================
 " netcomplcache
 " ====================
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_enable_camel_case_completion=1
+let g:neocomplcache_enable_underbar_completion=1
+let g:neocomplcache_min_syntax_length=3
 
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><C-h> neocomplcache#smart_close_popup()
-inoremap <expr><BS> neocomplcache#smart_close_popup()
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()
+"inoremap <expr><C-y> neocomplcache#close_popup()
+"inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -94,3 +110,9 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 set background=dark
 colorschem solarized
+
+" ====================
+" Json
+" ====================
+au! BufRead,BufNewFile *.json set filetype=javascript
+
