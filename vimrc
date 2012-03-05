@@ -8,6 +8,9 @@ call vundle#rc()
 
 " Let vundle manage
 Bundle 'gmarik/vundle'
+" sudo.vim
+Bundle 'sudo.vim'
+
 " Unite.vm
 Bundle 'Shougo/unite.vim'
 " YankRing
@@ -26,6 +29,8 @@ Bundle 'hail2u/vim-css3-syntax'
 Bundle 'vim-scripts/jade.vim'
 " Stylus
 Bundle 'wavded/vim-stylus'
+" Yaml
+Bundle 'ingydotnet/yaml-vim'
 
 " ====================
 " visual options
@@ -67,12 +72,19 @@ set fileformats=unix,dos,mac
 " Unite.vim
 " ====================
 let g:unite_enable_start_insert=1
-noremap :ub :<C-u>Unite file_mru -buffer-name=file_mru<CR>
-noremap :uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-noremap :ur :<C-u>Unite -buffer-name=register register<CR>
-noremap :um :<C-u>Unite file_mru<CR>
-noremap :uu :<C-u>Unite buffer file_mru<CR>
-noremap :ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+	nmap <silent><buffer> <ESC><ESC> q
+	imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
 
 " ====================
 " netcomplcache
@@ -94,25 +106,24 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-
 " ====================
 " color scheme
 " ====================
 syntax enable
 set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_termtrans=0
-let g:solarized_degrade=0
-let g:solarized_bold=1
-let g:solarized_underline=1
-let g:solarized_italic=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
-set background=dark
-colorschem solarized
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+"let g:solarized_degrade=0
+"let g:solarized_bold=1
+"let g:solarized_underline=1
+"let g:solarized_italic=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+"set background=dark
+"colorschem solarized
+colorscheme wombat256mod
 
 " ====================
-" Json
+" file types
 " ====================
 au! BufRead,BufNewFile *.json set filetype=javascript
-
