@@ -8,8 +8,10 @@ call vundle#rc()
 
 " Let vundle manage
 Bundle 'gmarik/vundle'
-" sudo.vim
-Bundle 'sudo.vim'
+" NerdTree
+Bundle "scrooloose/nerdtree"
+" mini buffer explorer
+Bundle 'fholgado/minibufexpl.vim'
 
 " Unite.vm
 Bundle 'Shougo/unite.vim'
@@ -52,6 +54,13 @@ set smartcase
 set wrapscan
 set tabstop=4
 set shiftwidth=4
+
+" ====================
+" mouse options
+" ====================
+if has("mouse")
+	set mouse=a
+endif
 
 " ====================
 " file encoding
@@ -127,3 +136,8 @@ colorscheme wombat256mod
 " file types
 " ====================
 au! BufRead,BufNewFile *.json set filetype=javascript
+
+" ====================
+" disable IME when pushed ESC
+" ====================
+set imdisable
