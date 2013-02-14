@@ -3,47 +3,48 @@ autocmd!
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+if has('vim_starting')
+	set runtimepath+=~/.vim/bundle/neobundle.vim
+	call neobundle#rc(expand('~/.vim/bundle/'))
+endif
 
-" Let vundle manage
-Bundle 'gmarik/vundle'
+" NeoBundle
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
 " NerdTree
-Bundle 'scrooloose/nerdtree'
-" NerdTree Tabs
-Bundle 'jistr/vim-nerdtree-tabs'
-" mini buffer explorer
-" Bundle 'fholgado/minibufexpl.vim'
+NeoBundle 'scrooloose/nerdtree'
 
 " Unite.vm
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
+" NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/vimfiler'
+
 " YankRing
-Bundle 'vim-scripts/YankRing.vim'
+" Bundle 'vim-scripts/YankRing.vim'
 " PowerLine
-Bundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/vim-powerline'
+" GitVim
+NeoBundle "motemen/git-vim"
 
 " Syntastic
-Bundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
-" JavaScript
-Bundle 'pangloss/vim-javascript'
 " JSHint
 " Bundle 'jshint.vim'
 " neocomplcache
-Bundle 'Shougo/neocomplcache'
-" Solarized color scheme
-Bundle 'altercation/vim-colors-solarized'
+NeoBundle 'Shougo/neocomplcache'
+" JavaScript
+NeoBundle 'pangloss/vim-javascript'
 " CSS3
-Bundle 'hail2u/vim-css3-syntax'
+NeoBundle 'hail2u/vim-css3-syntax'
 " Jade
-Bundle 'vim-scripts/jade.vim'
+NeoBundle 'vim-scripts/jade.vim'
 " Stylus
-Bundle 'wavded/vim-stylus'
+NeoBundle 'wavded/vim-stylus'
 " Yaml
-Bundle 'ingydotnet/yaml-vim'
+NeoBundle 'ingydotnet/yaml-vim'
 " Markdonw
-Bundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-markdown'
 
 " ====================
 " visual options
@@ -85,6 +86,15 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
+" ====================
+" key binds
+" ====================
+noremap <Right> :bn<cr>
+noremap <Left> :bp<cr>
+
+" ====================
+" unite
+" ====================
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
 	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
@@ -117,12 +127,14 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " ====================
 "let g:syntastic_enable_signs=1
 "let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
+"let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map={
 	\ 'mode': 'active',
-	\ 'active_filetypes': [],
-	\ 'pasive_filetypes': ['javascript']
+	\ 'active_filetypes': ['javascript'],
+	\ 'passive_filetypes': ['html']
 	\}
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checkers = ['jshint']
 
 " ====================
 " color scheme
