@@ -10,14 +10,16 @@ endif
 
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
+
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
+
 " NerdTree
 NeoBundle 'scrooloose/nerdtree'
 
 " Unite.vm
-" NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
 
 " YankRing
 " Bundle 'vim-scripts/YankRing.vim'
