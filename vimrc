@@ -31,6 +31,9 @@ NeoBundle "motemen/git-vim"
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
 
+" Tagbar
+NeoBundle 'majutsushi/tagbar'
+
 " JSHint
 " Bundle 'jshint.vim'
 " neocomplcache
