@@ -79,6 +79,7 @@ set shiftwidth=4
 if has("mouse")
 	set mouse=a
 endif
+
 " ====================
 " clip board
 " ====================
@@ -94,8 +95,7 @@ set fileencoding=utf-8
 " ====================
 " key binds
 " ====================
-noremap <Right> :bn<cr>
-noremap <Left> :bp<cr>
+noremap <F1> <nop>
 
 " ====================
 " unite
