@@ -16,6 +16,8 @@ NeoBundle 'Shougo/vimshell'
 
 " NerdTree
 NeoBundle 'scrooloose/nerdtree'
+" NerdTree Tabs
+" NeoBundle 'jistr/vim-nerdtree-tabs'
 
 " Unite.vm
 NeoBundle 'Shougo/unite.vim'
@@ -106,6 +108,12 @@ function! s:unite_settings()
 	nmap <silent><buffer> <ESC><ESC> q
 	imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
+
+" ====================
+" VimFiler
+" ====================
+nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
+let g:vimfiler_as_default_explorer = 1
 
 " ====================
 " netcomplcache
