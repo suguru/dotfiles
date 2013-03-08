@@ -28,11 +28,12 @@ NeoBundle 'Shougo/vimfiler'
 " PowerLine
 NeoBundle 'Lokaltog/vim-powerline'
 " GitVim
-NeoBundle "motemen/git-vim"
+" NeoBundle "motemen/git-vim"
+" GitGutter
+NeoBundle 'airblade/vim-gitgutter'
 
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
-
 " Tagbar
 NeoBundle 'majutsushi/tagbar'
 
