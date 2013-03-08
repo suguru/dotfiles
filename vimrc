@@ -22,6 +22,8 @@ NeoBundle 'scrooloose/nerdtree'
 " Unite.vm
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
+" Unite source
+" NeoBundle 'h1mesuke/unite-outline'
 
 " YankRing
 " Bundle 'vim-scripts/YankRing.vim'
@@ -116,6 +118,9 @@ nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" unite yank history
+let g:unite_source_history_yank_enable = 1
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 
 " ====================
 " VimFiler
