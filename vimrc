@@ -97,7 +97,9 @@ set fileencoding=utf-8
 " ====================
 " key binds
 " ====================
-noremap <F1> <nop>
+nnoremap <F1> <nop>
+inoremap <F1> <nop>
+vnoremap <F1> <nop>
 
 " ====================
 " unite
