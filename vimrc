@@ -29,8 +29,8 @@ NeoBundle 'Shougo/vimfiler'
 " Bundle 'vim-scripts/YankRing.vim'
 " PowerLine
 NeoBundle 'Lokaltog/vim-powerline'
-" GitVim
-" NeoBundle "motemen/git-vim"
+" vim-fugitive
+NeoBundle "tpope/vim-fugitive"
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
 
