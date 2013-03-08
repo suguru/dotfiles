@@ -124,6 +124,12 @@ nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-qu
 let g:vimfiler_as_default_explorer = 1
 
 " ====================
+" GitGutter
+" ====================
+nnoremap <silent> ,gn :GitGutterNextHunk<CR>
+nnoremap <silent> ,gp :GitGutterPrevHunk<CR>
+
+" ====================
 " netcomplcache
 " ====================
 let g:neocomplcache_enable_at_startup=1
