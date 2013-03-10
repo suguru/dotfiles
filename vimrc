@@ -57,12 +57,19 @@ NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'tpope/vim-markdown'
 
 " ====================
+" generic options
+" ====================
+set nobackup
+set incsearch
+
+" ====================
 " visual options
 " ====================
 filetype plugin indent on
 set showmode
 set title
 set ruler
+set number
 set showcmd
 set showmatch
 set laststatus=2
@@ -72,11 +79,12 @@ set ttyfast
 " ====================
 " programming
 " ====================
+set nocindent
 set smartindent
 set smartcase
 set wrapscan
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 " ====================
 " mouse options
