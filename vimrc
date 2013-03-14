@@ -25,26 +25,27 @@ NeoBundle 'Shougo/vimfiler'
 " Unite source
 " NeoBundle 'h1mesuke/unite-outline'
 
-" YankRing
-" Bundle 'vim-scripts/YankRing.vim'
+" Surround
+NeoBundle "tpope/vim-surround"
+
 " PowerLine
 NeoBundle 'Lokaltog/vim-powerline'
 " vim-fugitive
-NeoBundle "tpope/vim-fugitive"
+NeoBundle 'itpope/vim-fugitive'
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
 
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
 " Tagbar
-NeoBundle 'majutsushi/tagbar'
+" NeoBundle 'majutsushi/tagbar'
 
 " JSHint
-" Bundle 'jshint.vim'
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
-" JavaScript
-NeoBundle 'pangloss/vim-javascript'
+" JavaScript (disable by performance issue)
+" NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'trevnorris/vim-javascript'
 " CSS3
 NeoBundle 'hail2u/vim-css3-syntax'
 " Jade
@@ -79,7 +80,6 @@ set ttyfast
 " ====================
 " programming
 " ====================
-set nocindent
 set smartindent
 set smartcase
 set wrapscan
@@ -129,6 +129,13 @@ nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 " unite yank history
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opts = ''
+let g:unite_source_grep_max_candidates = 200
+
+vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 
 " ====================
 " VimFiler
@@ -192,6 +199,7 @@ set t_Co=256
 "set background=dark
 "colorschem solarized
 colorscheme wombat256mod
+"colorscheme tomorrow-night-bright
 
 " ====================
 " file types
@@ -209,3 +217,4 @@ set imdisable
 set guifont=Monaco:h10
 set guifontwide=Monaco:10
 set noantialias
+
