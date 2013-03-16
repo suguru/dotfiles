@@ -130,10 +130,10 @@ nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_grep_recursive_opts = ''
-let g:unite_source_grep_max_candidates = 200
+" let g:unite_source_grep_command = 'ag'
+" let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+" let g:unite_source_grep_recursive_opts = ''
+" let g:unite_source_grep_max_candidates = 200
 
 vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 
