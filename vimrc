@@ -76,6 +76,9 @@ set showmatch
 set laststatus=2
 set cursorline
 set ttyfast
+" cursor
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ====================
 " programming
@@ -198,8 +201,10 @@ set t_Co=256
 "let g:solarized_visibility="normal"
 "set background=dark
 "colorschem solarized
-colorscheme wombat256mod
+"colorscheme wombat256mod
 "colorscheme tomorrow-night-bright
+"colorscheme gummybears
+colorscheme nazca
 
 " ====================
 " file types
