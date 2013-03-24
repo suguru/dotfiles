@@ -43,9 +43,13 @@ NeoBundle 'scrooloose/syntastic'
 " JSHint
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
-" JavaScript (disable by performance issue)
 " NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'trevnorris/vim-javascript'
+"NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'suguru/vim-javascript-syntax'
+NeoBundle 'jiangmiao/simple-javascript-indenter'
+" Node.js
+NeoBundle 'myhere/vim-nodejs-complete'
+
 " CSS3
 NeoBundle 'hail2u/vim-css3-syntax'
 " Jade
@@ -56,6 +60,9 @@ NeoBundle 'wavded/vim-stylus'
 NeoBundle 'ingydotnet/yaml-vim'
 " Markdonw
 NeoBundle 'tpope/vim-markdown'
+
+" color table
+NeoBundle "guns/xterm-color-table.vim"
 
 " ====================
 " generic options
@@ -173,6 +180,14 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " ====================
+" vim-nodejs-complete
+" ====================
+let g:nodejs_complete_config = {
+			\ 'js_compl_fn': 'jscomplete#CompleteJS',
+			\ 'max_node_compl_len': 15
+			\}
+
+" ====================
 " syntastic
 " ====================
 "let g:syntastic_enable_signs=1
@@ -204,7 +219,9 @@ set t_Co=256
 "colorscheme wombat256mod
 "colorscheme tomorrow-night-bright
 "colorscheme gummybears
-colorscheme nazca
+"colorscheme nazca
+"colorscheme mango
+colorscheme proteus
 
 " ====================
 " file types
