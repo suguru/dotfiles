@@ -43,10 +43,10 @@ NeoBundle 'scrooloose/syntastic'
 " JSHint
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
-" NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'suguru/vim-javascript-syntax'
-NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle 'pangloss/vim-javascript'
+"NeoBundle 'jelera/vim-javascript-syntax'
+"NeoBundle 'jiangmiao/simple-javascript-indenter'
 " Node.js
 NeoBundle 'myhere/vim-nodejs-complete'
 
