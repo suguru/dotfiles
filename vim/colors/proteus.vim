@@ -29,13 +29,13 @@ hi Pmenu         ctermfg=254 ctermbg=22
 hi PmenuSel      ctermfg=254 ctermbg=233 cterm=bold
 
 hi Keyword       ctermfg=111
-hi Comment       ctermfg=238
+hi Comment       ctermfg=240
 hi String        ctermfg=113
 hi Repeat        ctermfg=70  cterm=bold
 hi Error         ctermfg=160
 hi Todo          ctermfg=197 ctermbg=232 cterm=bold,underline
 hi Identifier    ctermfg=111 cterm=bold
-hi Function      ctermfg=214 cterm=bold
+hi Function      ctermfg=214 
 hi Conditional   ctermfg=40  cterm=bold
 hi Statement     ctermfg=178
 hi Operator      ctermfg=136
