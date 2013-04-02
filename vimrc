@@ -15,7 +15,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 
 " NerdTree
-NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'scrooloose/nerdtree'
 " NerdTree Tabs
 " NeoBundle 'jistr/vim-nerdtree-tabs'
 
@@ -29,8 +29,9 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle "tpope/vim-surround"
 
 " PowerLine
-NeoBundle 'Lokaltog/vim-powerline'
 " vim-fugitive
+" NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/powerline'
 NeoBundle 'itpope/vim-fugitive'
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
@@ -77,7 +78,6 @@ filetype plugin indent on
 set showmode
 set title
 set ruler
-set number
 set showcmd
 set showmatch
 set laststatus=2
@@ -121,6 +121,7 @@ set fileencoding=utf-8
 nnoremap <F1> <nop>
 inoremap <F1> <nop>
 vnoremap <F1> <nop>
+:nmap <C-N><C-N> :set invnumber<CR>
 
 " ====================
 " unite
@@ -150,14 +151,20 @@ vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 " ====================
 " VimFiler
 " ====================
-nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
+nnoremap <silent> ,ud :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
 
 " ====================
 " GitGutter
 " ====================
 nnoremap <silent> ,gn :GitGutterNextHunk<CR>
 nnoremap <silent> ,gp :GitGutterPrevHunk<CR>
+
+" ====================
+" powerline
+" ====================
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " ====================
 " netcomplcache
