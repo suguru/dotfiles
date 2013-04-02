@@ -13,12 +13,16 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 alias ll='ls -alh'
 alias la='ls -a'
 
-# vi alias
-alias vi='/usr/local/bin/vi'
-alias vim='/usr/local/bin/vi'
-
 # homebrew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# alias for vi
+VIM_HOME=/usr/local/Cellar/macvim/7.3-66
+alias vi='$VIM_HOME/bin/vi'
+alias vim='$VIM_HOME/bin/vim'
+alias vimex='$VIM_HOME/bin/vimex'
+alias vimdiff='$VIM_HOME/bin/vimdiff'
+
 
 # bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
