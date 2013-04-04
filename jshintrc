@@ -3,8 +3,7 @@
 	"predef": [
 		"define",
 		"require",
-		"requirejs",
-		"_"
+		"requirejs"
 	],
 
 	"bitwise": false,
