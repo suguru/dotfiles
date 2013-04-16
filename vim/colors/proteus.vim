@@ -29,17 +29,17 @@ hi Pmenu         ctermfg=254 ctermbg=22
 hi PmenuSel      ctermfg=254 ctermbg=233 cterm=bold
 
 hi Keyword       ctermfg=111
-hi Comment       ctermfg=240
+hi Comment       ctermfg=60
 hi String        ctermfg=113
 hi Repeat        ctermfg=70  cterm=bold
 hi Error         ctermfg=160
 hi Todo          ctermfg=197 ctermbg=232 cterm=bold,underline
-hi Identifier    ctermfg=111 cterm=bold
-hi Function      ctermfg=214 
-hi Conditional   ctermfg=40  cterm=bold
+hi Identifier    ctermfg=111
+hi Function      ctermfg=208
+hi Conditional   ctermfg=40
 hi Statement     ctermfg=178
 hi Operator      ctermfg=136
-hi Branch        ctermfg=136 cterm=bold
+hi Branch        ctermfg=136
 hi Special       ctermfg=113
 hi Type          ctermfg=177
 hi Label         ctermfg=111
@@ -47,21 +47,23 @@ hi Number        ctermfg=112
 hi Float         ctermfg=155
 hi Boolean       ctermfg=155
 hi Null          ctermfg=63
+hi NonText       ctermfg=236
+hi SpecialKey    ctermfg=236
 
 "hi jsRegexpString ctermfg=red
 hi javascriptGlobal        ctermfg=174
-hi javascriptGlobalObjects ctermfg=172 cterm=bold
+hi javascriptGlobalObjects ctermfg=172
 hi javascriptBraces        ctermfg=203
 hi javascriptParens        ctermfg=216
-hi javascriptIdentifier    ctermfg=167 cterm=bold
+hi javascriptIdentifier    ctermfg=167
 hi javascriptFuncArg       ctermfg=153
-hi javascriptFuncKeyword   ctermfg=214 cterm=bold
+hi javascriptFuncKeyword   ctermfg=214
 hi javascriptFuncDef       ctermfg=111
 "hi jsDocTags     ctermfg=magenta
 hi javascriptOpSymbols     ctermfg=33
 hi javascriptLogicSymbols  ctermfg=105
 hi javascriptEndColons     ctermfg=33
-hi javascriptStatement     ctermfg=135 cterm=bold
+hi javascriptStatement     ctermfg=135
 hi javascriptDocParamType  ctermfg=81
 hi javascriptDocNamedParamType ctermfg=39
 "hi jsDocType     ctermfg=cyan
