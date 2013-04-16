@@ -41,6 +41,13 @@ NeoBundle 'scrooloose/syntastic'
 " Tagbar
 " NeoBundle 'majutsushi/tagbar'
 
+" Dash.app
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
+
+" Vim Multi cursor
+NeoBundle 'terryma/vim-multiple-cursors'
+
 " JSHint
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
@@ -86,6 +93,9 @@ set ttyfast
 " cursor
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" spaces
+set list
+set listchars=tab:»-,trail:-,nbsp:.
 
 " ====================
 " programming
@@ -94,6 +104,7 @@ set smartindent
 set smartcase
 set wrapscan
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 
 " ====================
@@ -102,6 +113,11 @@ set shiftwidth=2
 if has("mouse")
 	set mouse=a
 endif
+
+" ====================
+" search
+" ====================
+set ignorecase
 
 " ====================
 " clip board
