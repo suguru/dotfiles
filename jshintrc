@@ -6,6 +6,8 @@
 		"requirejs"
 	],
 
+	"indent": 2,
+
 	"bitwise": false,
 	"camelcase": false,
 	"curly": false,
