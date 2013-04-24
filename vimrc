@@ -32,7 +32,7 @@ NeoBundle "tpope/vim-surround"
 " vim-fugitive
 " NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Lokaltog/powerline'
-NeoBundle 'itpope/vim-fugitive'
+" NeoBundle 'itpope/vim-fugitive'
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
 
@@ -42,8 +42,8 @@ NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'majutsushi/tagbar'
 
 " Dash.app
-NeoBundle 'rizzatti/funcoo.vim'
-NeoBundle 'rizzatti/dash.vim'
+" NeoBundle 'rizzatti/funcoo.vim'
+" NeoBundle 'rizzatti/dash.vim'
 
 " Vim Multi cursor
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -51,6 +51,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 " JSHint
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
+
 NeoBundle 'suguru/vim-javascript-syntax'
 NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'jelera/vim-javascript-syntax'
