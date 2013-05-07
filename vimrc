@@ -77,6 +77,7 @@ NeoBundle "guns/xterm-color-table.vim"
 " generic options
 " ====================
 set nobackup
+set noswapfile
 set incsearch
 
 " ====================
