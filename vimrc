@@ -5,23 +5,26 @@ filetype off
 
 if has('vim_starting')
 	set runtimepath+=~/.vim/bundle/neobundle.vim
-	call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-" NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
+call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
+" NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " NerdTree
 " NeoBundle 'scrooloose/nerdtree'
 " NerdTree Tabs
 " NeoBundle 'jistr/vim-nerdtree-tabs'
 
+" VimProc
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
 " Unite.vm
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler'
+
+
 " Unite source
 " NeoBundle 'h1mesuke/unite-outline'
 
@@ -50,7 +53,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 
 " JSHint
 " neocomplcache
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache.vim'
 
 NeoBundle 'suguru/vim-javascript-syntax'
 NeoBundle 'pangloss/vim-javascript'
@@ -62,7 +65,7 @@ NeoBundle 'myhere/vim-nodejs-complete'
 " CSS3
 NeoBundle 'hail2u/vim-css3-syntax'
 " Jade
-NeoBundle 'vim-scripts/jade.vim'
+NeoBundle 'digitaltoad/vim-jade'
 " Stylus
 NeoBundle 'wavded/vim-stylus'
 " Yaml
@@ -102,7 +105,8 @@ set listchars=tab:»-
 " ====================
 " programming
 " ====================
-set smartindent
+"set smartindent
+set cindent
 set smartcase
 set wrapscan
 set tabstop=2
@@ -150,15 +154,26 @@ function! s:unite_settings()
 	nmap <silent><buffer> <ESC><ESC> q
 	imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+nmap <silent><buffer> <ESC><ESC> q
+imap <silent><buffer> <ESC><ESC> <ESC>q
+nnoremap [unite] <Nop>
+nmap <Leader>u [unite]
+
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]d :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir file_mru<CR>
+nnoremap <silent> [unite]u :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]k :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+
 " unite yank history
 let g:unite_source_history_yank_enable = 1
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 
+" let g:unite_enable_start_insert = 1
+let g:unite_source_file_mru_limit = 100
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opts = ''
@@ -169,7 +184,7 @@ vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 " ====================
 " VimFiler
 " ====================
-nnoremap <silent> ,ud :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> [unite]e :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 
@@ -252,6 +267,7 @@ colorscheme proteus
 " file types
 " ====================
 au! BufRead,BufNewFile *.json set filetype=javascript
+au! BufRead,BufNewFile Gruntfile set filetype=javascript
 
 " ====================
 " disable IME when pushed ESC
