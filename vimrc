@@ -35,7 +35,7 @@ NeoBundle "tpope/vim-surround"
 " vim-fugitive
 " NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Lokaltog/powerline'
-" NeoBundle 'itpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
 
@@ -49,7 +49,10 @@ NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'rizzatti/dash.vim'
 
 " Vim Multi cursor
-NeoBundle 'terryma/vim-multiple-cursors'
+" NeoBundle 'terryma/vim-multiple-cursors'
+
+" Quick-Run
+NeoBundle "thinca/vim-quickrun"
 
 " JSHint
 " neocomplcache
@@ -230,15 +233,14 @@ let g:nodejs_complete_config = {
 " ====================
 " syntastic
 " ====================
-"let g:syntastic_enable_signs=1
+let g:syntastic_enable_signs=1
 "let g:syntastic_auto_jump=1
-"let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map={
 	\ 'mode': 'active',
 	\ 'active_filetypes': ['javascript'],
 	\ 'passive_filetypes': ['html']
 	\}
-let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checkers = ['jshint']
 
 " ====================
