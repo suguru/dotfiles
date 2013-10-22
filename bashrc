@@ -17,12 +17,11 @@ alias la='ls -a'
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # alias for vi
-VIM_HOME=/usr/local/Cellar/macvim/7.3-66
-alias vi='$VIM_HOME/bin/vi'
-alias vim='$VIM_HOME/bin/vim'
-alias vimex='$VIM_HOME/bin/vimex'
-alias vimdiff='$VIM_HOME/bin/vimdiff'
-
+#VIM_HOME=/usr/local/Cellar/macvim/7.3-66
+#alias vi='$VIM_HOME/bin/vi'
+#alias vim='$VIM_HOME/bin/vim'
+#alias vimex='$VIM_HOME/bin/vimex'
+#alias vimdiff='$VIM_HOME/bin/vimdiff'
 
 # bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -31,5 +30,10 @@ fi
 
 export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home'
 
-export NDK_ROOT='/usr/local/Cellar/android-ndk/r8e'
-export ANDROID_HOME='/usr/local/Cellar/android-sdk/r22.0.1/'
+export NDK_ROOT='/usr/local/Cellar/android-ndk/9'
+export ANDROID_HOME='/usr/local/Cellar/android-sdk/r22.0.5/'
+
+#function parse_git_branch { 
+#   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' 
+#} 
+#export PS1="\h:\W $(parse_git_branch) $ "

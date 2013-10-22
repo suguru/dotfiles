@@ -24,20 +24,19 @@ NeoBundle 'Shougo/vimshell'
 " Unite.vm
 NeoBundle 'Shougo/unite.vim'
 
-
 " Unite source
 " NeoBundle 'h1mesuke/unite-outline'
 
 " Surround
-NeoBundle "tpope/vim-surround"
+" NeoBundle "tpope/vim-surround"
 
-" PowerLine
+" Airline (status-bar yet another powerline)
+NeoBundle 'bling/vim-airline'
 " vim-fugitive
 " NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'Lokaltog/powerline'
 NeoBundle 'tpope/vim-fugitive'
 " GitGutter
-NeoBundle 'airblade/vim-gitgutter'
+" NeoBundle 'airblade/vim-gitgutter'
 
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
@@ -52,15 +51,17 @@ NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'terryma/vim-multiple-cursors'
 
 " Quick-Run
-NeoBundle "thinca/vim-quickrun"
+" NeoBundle "thinca/vim-quickrun"
 
-" JSHint
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache.vim'
+" tern
+NeoBundle 'marijnh/tern_for_vim'
 
-NeoBundle 'suguru/vim-javascript-syntax'
+"NeoBundle 'suguru/vim-javascript-syntax'
+NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 "NeoBundle 'jiangmiao/simple-javascript-indenter'
 " Node.js
 NeoBundle 'myhere/vim-nodejs-complete'
@@ -77,7 +78,9 @@ NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'tpope/vim-markdown'
 
 " color table
-NeoBundle "guns/xterm-color-table.vim"
+" NeoBundle "guns/xterm-color-table.vim"
+"
+NeoBundle 'editorconfig/editorconfig-vim'
 
 " ====================
 " generic options
@@ -200,7 +203,8 @@ nnoremap <silent> ,gp :GitGutterPrevHunk<CR>
 " ====================
 " powerline
 " ====================
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+let g:airline_powerline_fonts=1
 
 " ====================
 " netcomplcache
@@ -217,31 +221,43 @@ inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 "inoremap <expr><C-y> neocomplcache#close_popup()
 "inoremap <expr><C-e> neocomplcache#cancel_popup()
 
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" ====================
-" vim-nodejs-complete
-" ====================
-let g:nodejs_complete_config = {
-			\ 'js_compl_fn': 'jscomplete#CompleteJS',
-			\ 'max_node_compl_len': 15
-			\}
 
 " ====================
 " syntastic
 " ====================
 let g:syntastic_enable_signs=1
 "let g:syntastic_auto_jump=1
+"let g:syntastic_check_on_open=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map={
 	\ 'mode': 'active',
 	\ 'active_filetypes': ['javascript'],
-	\ 'passive_filetypes': ['html']
+	\ 'passive_filetypes': ['html','cpp']
 	\}
 let g:syntastic_javascript_checkers = ['jshint']
+
+" syntastic include dirs
+" let g:syntastic_cpp_include_dirs = [
+"			\ '/usr/include'
+"			\ ,'/usr/local/include'
+"			\ ,'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include'
+"			\ ,'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/OpenGLES.framework/Headers'
+"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/platform/ios'
+"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx'
+"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/include'
+"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/platform/third_party/ios/libraries'
+"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/kazmath/include'
+"			\ ]
+" let g:syntastic_cpp_check_header=1
+" let g:syntastic_cpp_cflags = ' -I/usr/include/'
+" let g:syntastic_cpp_remove_include_errors=1
+" let g:syntastic_cpp_compiler='clang++'
+" let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++'
 
 " ====================
 " color scheme
@@ -270,6 +286,7 @@ colorscheme proteus
 " ====================
 au! BufRead,BufNewFile *.json set filetype=javascript
 au! BufRead,BufNewFile Gruntfile set filetype=javascript
+" au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 " ====================
 " disable IME when pushed ESC
