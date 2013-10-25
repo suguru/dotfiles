@@ -115,6 +115,7 @@ set listchars=tab:»-
 set cindent
 set smartcase
 set wrapscan
+set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
