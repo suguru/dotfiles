@@ -8,6 +8,7 @@
 # set console color
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
+export PS1='\[\033[32m\]\u:\[\033[36m\]\w \[\033[m\]$ '
 
 # useful alias
 alias ll='ls -alh'

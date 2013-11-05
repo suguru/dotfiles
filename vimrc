@@ -59,9 +59,9 @@ NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'marijnh/tern_for_vim'
 
 "NeoBundle 'suguru/vim-javascript-syntax'
-NeoBundle 'jelera/vim-javascript-syntax'
+"NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'nathanaelkane/vim-indent-guides'
+"NeoBundle 'nathanaelkane/vim-indent-guides'
 "NeoBundle 'jiangmiao/simple-javascript-indenter'
 " Node.js
 NeoBundle 'myhere/vim-nodejs-complete'
@@ -81,6 +81,13 @@ NeoBundle 'tpope/vim-markdown'
 " NeoBundle "guns/xterm-color-table.vim"
 "
 NeoBundle 'editorconfig/editorconfig-vim'
+
+" Color Schemes
+" NeoBundle 'tomasr/molokai'
+NeoBundle 'goatslacker/mango.vim'
+" NeoBundle 'Lokaltog/vim-distinguished'
+" JS Scope Context Coloring
+" NeoBundle 'bigfish/vim-js-context-coloring'
 
 " ====================
 " generic options
@@ -206,6 +213,11 @@ nnoremap <silent> ,gp :GitGutterPrevHunk<CR>
 " ====================
 " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 let g:airline_powerline_fonts=1
+let g:airline_theme='wombat'
+" unicode symbols
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" set linespace=2
 
 " ====================
 " netcomplcache
@@ -265,22 +277,22 @@ let g:syntastic_javascript_checkers = ['jshint']
 " ====================
 syntax enable
 set t_Co=256
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-"let g:solarized_degrade=0
-"let g:solarized_bold=1
-"let g:solarized_underline=1
-"let g:solarized_italic=1
-"let g:solarized_contrast="normal"
-"let g:solarized_visibility="normal"
-"set background=dark
-"colorschem solarized
-"colorscheme wombat256mod
-"colorscheme tomorrow-night-bright
-"colorscheme gummybears
-"colorscheme nazca
-"colorscheme mango
-colorscheme proteus
+set background=dark
+colorscheme mango
+"colorscheme proteus
+"colorscheme molokai
+"colorscheme distinguished
+
+" Adjust omnifunc pop menu
+highlight Pmenu ctermbg=179 ctermfg=16 cterm=bold
+highlight CursorLine ctermbg=237
+" Color Scheme for javascript
+highlight jsFunction ctermfg=105
+highlight jsFuncName ctermfg=111
+highlight jsFuncArgs ctermfg=211
+highlight jsObjectKey ctermfg=141
+highlight jsFunctionKey ctermfg=141
+highlight Noise ctermfg=216
 
 " ====================
 " file types
