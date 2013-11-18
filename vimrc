@@ -4,7 +4,7 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim
+  set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
@@ -51,7 +51,9 @@ NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'terryma/vim-multiple-cursors'
 
 " Quick-Run
-" NeoBundle "thinca/vim-quickrun"
+NeoBundle "thinca/vim-quickrun"
+" Open Browser
+NeoBundle 'tyru/open-browser.vim'
 
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache.vim'
@@ -63,8 +65,12 @@ NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'nathanaelkane/vim-indent-guides'
 "NeoBundle 'jiangmiao/simple-javascript-indenter'
+
+" Coffeescript
+NeoBundle 'kchmck/vim-coffee-script'
+
 " Node.js
-NeoBundle 'myhere/vim-nodejs-complete'
+"NeoBundle 'myhere/vim-nodejs-complete'
 
 " CSS3
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -76,6 +82,9 @@ NeoBundle 'wavded/vim-stylus'
 NeoBundle 'ingydotnet/yaml-vim'
 " Markdonw
 NeoBundle 'tpope/vim-markdown'
+
+" Markdonw preview
+NeoBundle 'kannokanno/previm'
 
 " color table
 " NeoBundle "guns/xterm-color-table.vim"
@@ -118,7 +127,7 @@ set listchars=tab:»-
 " ====================
 " programming
 " ====================
-"set smartindent
+" set smartindent
 set cindent
 set smartcase
 set wrapscan
@@ -126,12 +135,13 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set backspace=indent
 
 " ====================
 " mouse options
 " ====================
 if has("mouse")
-	set mouse=a
+  set mouse=a
 endif
 
 " ====================
@@ -164,9 +174,9 @@ vnoremap <F1> <nop>
 " ====================
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
-	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-	nmap <silent><buffer> <ESC><ESC> q
-	imap <silent><buffer> <ESC><ESC> <ESC>q
+  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
 
 imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
@@ -248,29 +258,11 @@ let g:syntastic_enable_signs=1
 "let g:syntastic_check_on_open=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map={
-	\ 'mode': 'active',
-	\ 'active_filetypes': ['javascript'],
-	\ 'passive_filetypes': ['html','cpp']
-	\}
+      \ 'mode': 'active',
+      \ 'active_filetypes': ['javascript'],
+      \ 'passive_filetypes': ['html','cpp']
+      \}
 let g:syntastic_javascript_checkers = ['jshint']
-
-" syntastic include dirs
-" let g:syntastic_cpp_include_dirs = [
-"			\ '/usr/include'
-"			\ ,'/usr/local/include'
-"			\ ,'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include'
-"			\ ,'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/OpenGLES.framework/Headers'
-"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/platform/ios'
-"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx'
-"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/include'
-"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/platform/third_party/ios/libraries'
-"			\ ,'/Users/namura_suguru/workspace/cocos2d-x/cocos2dx/kazmath/include'
-"			\ ]
-" let g:syntastic_cpp_check_header=1
-" let g:syntastic_cpp_cflags = ' -I/usr/include/'
-" let g:syntastic_cpp_remove_include_errors=1
-" let g:syntastic_cpp_compiler='clang++'
-" let g:syntastic_cpp_compiler_options=' -std=c++11 -stdlib=libc++'
 
 " ====================
 " color scheme
@@ -309,7 +301,7 @@ set imdisable
 " ====================
 " font settings
 " ====================
-set guifont=Monaco:h10
-set guifontwide=Monaco:10
-set noantialias
+" set guifont=Monaco:h10
+" set guifontwide=Monaco:10
+" set noantialias
 
