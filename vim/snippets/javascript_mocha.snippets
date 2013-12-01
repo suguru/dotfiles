@@ -1,0 +1,29 @@
+snippet describe
+  describe('${1:spec}', function() {
+    ${2}
+  });
+snippet it
+  it('${1:should}', function(done) {
+    ${2}
+    done();
+  });
+snippet before
+  before(function(done) {
+    ${0}
+    done();
+  });
+snippet after
+  after(function(done) {
+    ${0}
+    done();
+  });
+snippet beforeEach
+  beforeEach(function(done) {
+    ${0}
+    done();
+  });
+snippet afterEach
+  afterEach(function(done) {
+    ${0}
+    done();
+  });

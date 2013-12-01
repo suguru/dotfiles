@@ -36,12 +36,12 @@ NeoBundle 'bling/vim-airline'
 " NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'tpope/vim-fugitive'
 " GitGutter
-" NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'airblade/vim-gitgutter'
 
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
 " Tagbar
-" NeoBundle 'majutsushi/tagbar'
+NeoBundle 'majutsushi/tagbar'
 
 " Dash.app
 " NeoBundle 'rizzatti/funcoo.vim'
@@ -50,13 +50,18 @@ NeoBundle 'scrooloose/syntastic'
 " Vim Multi cursor
 " NeoBundle 'terryma/vim-multiple-cursors'
 
+" YankRing
+NeoBundle 'LeafCage/yankround.vim'
+
 " Quick-Run
 NeoBundle "thinca/vim-quickrun"
 " Open Browser
 NeoBundle 'tyru/open-browser.vim'
 
 " neocomplcache
-NeoBundle 'Shougo/neocomplcache.vim'
+" NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet.vim'
 " tern
 NeoBundle 'marijnh/tern_for_vim'
 
@@ -164,10 +169,18 @@ set fileencoding=utf-8
 " ====================
 " key binds
 " ====================
+
+" disable help
 nnoremap <F1> <nop>
 inoremap <F1> <nop>
 vnoremap <F1> <nop>
-:nmap <C-N><C-N> :set invnumber<CR>
+" :nmap <C-N><C-N> :set invnumber<CR>
+
+" tag key map
+nnoremap <silent> <C-t>l :tabnext<CR>
+nnoremap <silent> <C-t>h :tabprev<CR>
+nnoremap <silent> <C-t>c :tabclose<CR>
+nnoremap <silent> <C-t>n :tabnew<CR>
 
 " ====================
 " unite
@@ -189,8 +202,8 @@ nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]d :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir file_mru<CR>
 nnoremap <silent> [unite]u :<C-u>Unite file_mru<CR>
-nnoremap <silent> [unite]k :<C-u>Unite bookmark<CR>
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+" nnoremap <silent> [unite]k :<C-u>Unite bookmark<CR>
+" nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 
 " unite yank history
 let g:unite_source_history_yank_enable = 1
@@ -213,10 +226,23 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 
 " ====================
+" Tagbar
+" ====================
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
+
+" ====================
+" Yankround
+" ====================
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+" ====================
 " GitGutter
 " ====================
 nnoremap <silent> ,gn :GitGutterNextHunk<CR>
-nnoremap <silent> ,gp :GitGutterPrevHunk<CR>
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ====================
 " powerline
@@ -230,25 +256,42 @@ let g:airline_theme='wombat'
 " set linespace=2
 
 " ====================
+" neocomplete
+" ====================
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" ====================
 " netcomplcache
 " ====================
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_enable_camel_case_completion=1
-let g:neocomplcache_enable_underbar_completion=1
-let g:neocomplcache_min_syntax_length=3
-
-inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr><C-h> neocomplcache#smart_close_popup()
-"inoremap <expr><C-y> neocomplcache#close_popup()
-"inoremap <expr><C-e> neocomplcache#cancel_popup()
+" let g:neocomplcache_enable_at_startup=1
+" let g:neocomplcache_enable_smart_case=1
+" let g:neocomplcache_enable_camel_case_completion=1
+" let g:neocomplcache_enable_underbar_completion=1
+" let g:neocomplcache_min_syntax_length=3
+" inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" ====================
+" neo-snippets
+" ====================
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
 
 " ====================
 " syntastic
@@ -290,7 +333,6 @@ highlight Noise ctermfg=216
 " file types
 " ====================
 au! BufRead,BufNewFile *.json set filetype=javascript
-au! BufRead,BufNewFile Gruntfile set filetype=javascript
 " au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 " ====================

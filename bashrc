@@ -31,8 +31,8 @@ fi
 
 export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home'
 
-export NDK_ROOT='/usr/local/Cellar/android-ndk/9'
-export ANDROID_HOME='/usr/local/Cellar/android-sdk/r22.0.5/'
+export NDK_ROOT='/usr/local/opt/android-ndk'
+export ANDROID_HOME='/usr/local/opt/android-sdk'
 
 #function parse_git_branch { 
 #   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' 
