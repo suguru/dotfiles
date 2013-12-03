@@ -31,9 +31,10 @@ NeoBundle 'Shougo/unite.vim'
 " NeoBundle "tpope/vim-surround"
 
 " Airline (status-bar yet another powerline)
-NeoBundle 'bling/vim-airline'
-" vim-fugitive
+" NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 " NeoBundle 'Lokaltog/vim-powerline'
+" vim-fugitive
 NeoBundle 'tpope/vim-fugitive'
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
@@ -43,6 +44,8 @@ NeoBundle 'scrooloose/syntastic'
 " Tagbar
 NeoBundle 'majutsushi/tagbar'
 
+" Vim Over
+NeoBundle 'osyo-manga/vim-over'
 " Dash.app
 " NeoBundle 'rizzatti/funcoo.vim'
 " NeoBundle 'rizzatti/dash.vim'
