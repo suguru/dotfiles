@@ -36,6 +36,7 @@ NeoBundle 'itchyny/lightline.vim'
 " NeoBundle 'Lokaltog/vim-powerline'
 " vim-fugitive
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv.git'
 " GitGutter
 NeoBundle 'airblade/vim-gitgutter'
 
