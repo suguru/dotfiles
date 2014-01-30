@@ -4,10 +4,12 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
+  set rtp+=~/.vim/bundle/neobundle.vim
 endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
+
+set rtp+=$GOROOT/misc/vim
 
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -57,6 +59,9 @@ NeoBundle 'osyo-manga/vim-over'
 " YankRing
 NeoBundle 'LeafCage/yankround.vim'
 
+" ChooseWin
+NeoBundle 't9md/vim-choosewin'
+
 " Quick-Run
 NeoBundle "thinca/vim-quickrun"
 " Open Browser
@@ -88,7 +93,7 @@ NeoBundle 'digitaltoad/vim-jade'
 " Stylus
 NeoBundle 'wavded/vim-stylus'
 " Yaml
-NeoBundle 'ingydotnet/yaml-vim'
+NeoBundle 'stephpy/vim-yaml'
 " Markdonw
 NeoBundle 'tpope/vim-markdown'
 
@@ -185,6 +190,9 @@ nnoremap <silent> <C-t>l :tabnext<CR>
 nnoremap <silent> <C-t>h :tabprev<CR>
 nnoremap <silent> <C-t>c :tabclose<CR>
 nnoremap <silent> <C-t>n :tabnew<CR>
+for n in range(1,9)
+  execute 'nnoremap <silent> <C-t>'.n ':tabnext '.n.'<CR>'
+endfor
 
 " ====================
 " unite
@@ -214,7 +222,7 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 
 " let g:unite_enable_start_insert = 1
-let g:unite_source_file_mru_limit = 100
+let g:unite_source_file_mru_limit = 200
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opts = ''
@@ -252,12 +260,19 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " powerline
 " ====================
 " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-let g:airline_powerline_fonts=1
-let g:airline_theme='wombat'
+" let g:airline_powerline_fonts=1
+" let g:airline_theme='wombat'
 " unicode symbols
 " let g:airline_left_sep = ''
 " let g:airline_right_sep = ''
 " set linespace=2
+
+" ====================
+" ChooseWin
+" ====================
+nmap - <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+let g:choosewin_overlay_clear_multibyte = 1
 
 " ====================
 " neocomplete
