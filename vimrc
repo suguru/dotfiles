@@ -26,6 +26,10 @@ NeoBundle 'Shougo/vimshell'
 " Unite.vm
 NeoBundle 'Shougo/unite.vim'
 
+" CtrlP
+NeoBundle "kien/ctrlp.vim"
+
+"
 " Unite source
 " NeoBundle 'h1mesuke/unite-outline'
 
