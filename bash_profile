@@ -34,7 +34,7 @@ export NDK_ROOT='/usr/local/opt/android-ndk'
 export ANDROID_HOME='/usr/local/opt/android-sdk'
 export ANDROID_SDK_ROOT='/usr/local/opt/android-sdk'
 
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/gocode
 export GOROOT=/usr/local/Cellar/go/1.2/libexec
 
 #function parse_git_branch { 
