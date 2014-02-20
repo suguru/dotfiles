@@ -199,6 +199,14 @@ for n in range(1,9)
 endfor
 
 " ====================
+" ctrlp
+" ====================
+let g:ctrlp_use_migemo = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_mruf_max            = 500
+" let g:ctrlp_open_new_file       = 1
+
+" ====================
 " unite
 " ====================
 autocmd FileType unite call s:unite_settings()
