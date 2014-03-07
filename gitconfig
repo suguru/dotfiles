@@ -13,6 +13,8 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 [credential]
   helper = osxkeychain
+[rebase]
+  autostash = true
 [mergetool]
   keepBackup = true
 [filter "media"]
