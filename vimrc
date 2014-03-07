@@ -25,6 +25,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 " Unite.vm
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 
 " CtrlP
 NeoBundle "kien/ctrlp.vim"
