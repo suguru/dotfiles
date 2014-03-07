@@ -37,6 +37,8 @@ export ANDROID_SDK_ROOT='/usr/local/opt/android-sdk'
 export GOPATH=$HOME/gocode
 export GOROOT=/usr/local/Cellar/go/1.2/libexec
 
+export DOCKER_HOST=tcp://127.0.0.1:4243
+
 #function parse_git_branch { 
 #   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' 
 #} 
