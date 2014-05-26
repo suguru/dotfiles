@@ -50,7 +50,7 @@ NeoBundle 'airblade/vim-gitgutter'
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
 " Tagbar
-NeoBundle 'majutsushi/tagbar'
+" NeoBundle 'majutsushi/tagbar'
 
 " Vim Over
 NeoBundle 'osyo-manga/vim-over'
@@ -73,23 +73,36 @@ NeoBundle "thinca/vim-quickrun"
 NeoBundle 'tyru/open-browser.vim'
 
 " neocomplcache
-" NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 " tern
 NeoBundle 'marijnh/tern_for_vim'
 
-"NeoBundle 'suguru/vim-javascript-syntax'
-"NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'nathanaelkane/vim-indent-guides'
-"NeoBundle 'jiangmiao/simple-javascript-indenter'
 
 " Coffeescript
 NeoBundle 'kchmck/vim-coffee-script'
 
 " Node.js
 "NeoBundle 'myhere/vim-nodejs-complete'
+
+" GLSL
+NeoBundle 'tikhomirov/vim-glsl'
+
+" C++
+" NeoBundle 'justmao945/vim-clang'
+NeoBundleLazy 'Rip-Rip/clang_complete', {
+      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
+      \ }
+NeoBundleLazy 'vim-jp/cpp-vim', {
+      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
+      \ }
+
+" NeoBundleLazy 'osyo-manga/vim-marching', {
+"       \ 'depends': ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions'],
+"       \ 'autoload': {'filetype': ['c','cpp'] }
+"       \ }
+" NeoBundle 'Valloric/YouCompleteMe'
 
 " CSS3
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -202,11 +215,12 @@ endfor
 " ====================
 " ctrlp
 " ====================
-let g:ctrlp_use_migemo = 1
-let g:ctrlp_clear_cache_on_exit = 0
+" let g:ctrlp_use_migemo = 1
+let g:ctrlp_clear_cache_on_exit = 1
+" let g:ctrlp_working_path_mode   = 'ra'
 let g:ctrlp_mruf_max            = 500
-let g:ctrlp_custom_ignore = 'DS_Store\|git\|hg\|svn\|optimized\|compiled\|node_modules\|bower_components'
-" let g:ctrlp_open_new_file       = 1
+let g:ctrlp_custom_ignore = 'DS_Store\|\.git\|\.hg\|\.svn\|optimized\|compiled\|node_modules\|bower_components'
+let g:ctrlp_open_new_file       = 1
 
 " ====================
 " unite
@@ -261,8 +275,8 @@ nnoremap <silent> <Leader>t :TagbarToggle<CR>
 " ====================
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
+nmap <C-k> <Plug>(yankround-prev)
+nmap <C-j> <Plug>(yankround-next)
 
 " ====================
 " GitGutter
@@ -271,15 +285,26 @@ nnoremap <silent> ,gn :GitGutterNextHunk<CR>
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ====================
-" powerline
+" LightLine
 " ====================
-" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" let g:airline_powerline_fonts=1
-" let g:airline_theme='wombat'
-" unicode symbols
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" set linespace=2
+let g:lightline = {
+      \ 'active': {
+      \   'left': [
+      \     ['mode'],
+      \     ['readonly', 'fugitive', 'filename', 'modified']
+      \   ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"*":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ }
 
 " ====================
 " ChooseWin
@@ -297,19 +322,23 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_ignore_case = 1
+" let g:neocomplete#max_list = 5
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#enable_fuzzy_completion = 1
 
-" ====================
-" netcomplcache
-" ====================
-" let g:neocomplcache_enable_at_startup=1
-" let g:neocomplcache_enable_smart_case=1
-" let g:neocomplcache_enable_camel_case_completion=1
-" let g:neocomplcache_enable_underbar_completion=1
-" let g:neocomplcache_min_syntax_length=3
-" inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+" let g:neocomplete#force_overwrite_completefunc = 1
+" let g:neocomplete#force_omni_input_patterns = {}
+" let g:neocomplete#force_omni_input_patterns.c =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+" let g:neocomplete#force_omni_input_patterns.cpp =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" let g:neocomplete#force_omni_input_patterns.objc =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+" let g:neocomplete#force_omni_input_patterns.objcpp =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -327,6 +356,49 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = '~/.vim/snippets'
 
 " ====================
+" clang_complete
+" ====================
+" Disable auto completion, always <c-x> <c-o> to complete
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
+let g:clang_complete_copen = 1
+"" let g:clang_debug=1
+let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
+let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+
+" ====================
+" vim_clang
+" ====================
+" let g:clang_auto = 1
+" let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+" let g:clang_cpp_completeopt = 'longest,menuone'
+" let g:clang_cpp_options = ''
+
+" ====================
+" vim_marching
+" ====================
+" let g:marching_clang_command = '/usr/bin/clang'
+" let g:marching_clang_command_option = '-std=c++11'
+" let g:marching_include_paths = ['/usr/include/c++/4.2.1']
+" let g:marching_enable_neocomplete = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_overwrite_completefunc = 1
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
+"
+" ====================
+" YouCompleteMe
+" ====================
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_filepath_completion_use_working_dir = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" ====================
 " syntastic
 " ====================
 let g:syntastic_enable_signs=1
@@ -339,6 +411,8 @@ let g:syntastic_mode_map={
       \ 'passive_filetypes': ['html','cpp']
       \}
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_cpp_compiler = '/usr/bin/clang'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 
 " ====================
 " color scheme
