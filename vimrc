@@ -9,8 +9,6 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-set rtp+=$GOROOT/misc/vim
-
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -50,7 +48,7 @@ NeoBundle 'airblade/vim-gitgutter'
 " Syntastic
 NeoBundle 'scrooloose/syntastic'
 " Tagbar
-" NeoBundle 'majutsushi/tagbar'
+NeoBundle 'majutsushi/tagbar'
 
 " Vim Over
 NeoBundle 'osyo-manga/vim-over'
@@ -86,17 +84,23 @@ NeoBundle 'kchmck/vim-coffee-script'
 " Node.js
 "NeoBundle 'myhere/vim-nodejs-complete'
 
+" VimGo
+NeoBundle 'kchmck/vim-coffee-script'
+
 " GLSL
 NeoBundle 'tikhomirov/vim-glsl'
 
+" Go
+NeoBundle 'fatih/vim-go'
+
 " C++
 " NeoBundle 'justmao945/vim-clang'
-NeoBundleLazy 'Rip-Rip/clang_complete', {
-      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
-      \ }
-NeoBundleLazy 'vim-jp/cpp-vim', {
-      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
-      \ }
+"NeoBundleLazy 'Rip-Rip/clang_complete', {
+"      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
+"      \ }
+"NeoBundleLazy 'vim-jp/cpp-vim', {
+"      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
+"      \ }
 
 " NeoBundleLazy 'osyo-manga/vim-marching', {
 "       \ 'depends': ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions'],
@@ -112,9 +116,10 @@ NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'wavded/vim-stylus'
 " Yaml
 NeoBundle 'stephpy/vim-yaml'
+" Gyp
+NeoBundle 'kelan/gyp.vim'
 " Markdonw
 NeoBundle 'tpope/vim-markdown'
-
 " Markdonw preview
 NeoBundle 'kannokanno/previm'
 
@@ -359,13 +364,13 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets'
 " clang_complete
 " ====================
 " Disable auto completion, always <c-x> <c-o> to complete
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_use_library = 1
-let g:clang_complete_copen = 1
+"let g:clang_complete_auto = 0
+"let g:clang_auto_select = 0
+"let g:clang_use_library = 1
+"let g:clang_complete_copen = 1
 "" let g:clang_debug=1
-let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
-let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+"let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
+"let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 
 " ====================
 " vim_clang
@@ -382,21 +387,21 @@ let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 " let g:marching_clang_command_option = '-std=c++11'
 " let g:marching_include_paths = ['/usr/include/c++/4.2.1']
 " let g:marching_enable_neocomplete = 1
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_overwrite_completefunc = 1
-let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"  let g:neocomplete#force_omni_input_patterns = {}
+"endif
+"let g:neocomplete#force_overwrite_completefunc = 1
+"let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 " imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
 "
 " ====================
 " YouCompleteMe
 " ====================
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-" let g:ycm_confirm_extra_conf = 0
-" let g:ycm_filepath_completion_use_working_dir = 1
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_filepath_completion_use_working_dir = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " ====================
 " syntastic
@@ -411,8 +416,8 @@ let g:syntastic_mode_map={
       \ 'passive_filetypes': ['html','cpp']
       \}
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_cpp_compiler = '/usr/bin/clang'
-let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
+"let g:syntastic_cpp_compiler = '/usr/bin/clang'
+"let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 
 " ====================
 " color scheme
