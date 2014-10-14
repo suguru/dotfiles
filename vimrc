@@ -3,137 +3,113 @@ autocmd!
 set nocompatible
 filetype off
 
-if has('vim_starting')
-  set rtp+=~/.vim/bundle/neobundle.vim
-endif
+"if has('vim_starting')
+"  set runtimepath+=~/.vim/bundle/neobundle.vim
+"endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call plug#begin('~/.vim/plugged')
+"call neobundle#rc(expand('~/.vim/bundle/'))
 
 " NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+" NeoBundleFetch 'Shougo/neobundle.vim'
 
 " NerdTree
-" NeoBundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " NerdTree Tabs
 " NeoBundle 'jistr/vim-nerdtree-tabs'
 
 " VimProc
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
+" NeoBundle 'Shougo/vimfiler'
+" NeoBundle 'Shougo/vimproc'
+" NeoBundle 'Shougo/vimshell'
 " Unite.vm
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/neomru.vim'
 
 " CtrlP
-NeoBundle "kien/ctrlp.vim"
-
-"
-" Unite source
-" NeoBundle 'h1mesuke/unite-outline'
+Plug 'kien/ctrlp.vim'
 
 " Surround
 " NeoBundle "tpope/vim-surround"
 
 " Airline (status-bar yet another powerline)
 " NeoBundle 'bling/vim-airline'
-NeoBundle 'itchyny/lightline.vim'
-" NeoBundle 'Lokaltog/vim-powerline'
-" vim-fugitive
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv.git'
-" GitGutter
-NeoBundle 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
 
-" Syntastic
-NeoBundle 'scrooloose/syntastic'
-" Tagbar
-NeoBundle 'majutsushi/tagbar'
+" ===== Git =====
+Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv'
+Plug 'airblade/vim-gitgutter'
 
-" Vim Over
-NeoBundle 'osyo-manga/vim-over'
-" Dash.app
-" NeoBundle 'rizzatti/funcoo.vim'
-" NeoBundle 'rizzatti/dash.vim'
+
+" ===== Syntax Checker =====
+
+Plug 'scrooloose/syntastic'
+
+" ===== Tagbar ======
+
+Plug 'majutsushi/tagbar'
+
+" ===== Controls ======
+
+Plug 'osyo-manga/vim-over'
 
 " Vim Multi cursor
 " NeoBundle 'terryma/vim-multiple-cursors'
 
-" YankRing
-NeoBundle 'LeafCage/yankround.vim'
+Plug 'LeafCage/yankround.vim'
 
-" ChooseWin
-NeoBundle 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin'
 
-" Quick-Run
-NeoBundle "thinca/vim-quickrun"
-" Open Browser
-NeoBundle 'tyru/open-browser.vim'
+Plug 'thinca/vim-quickrun'
 
-" neocomplcache
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-" tern
-NeoBundle 'marijnh/tern_for_vim'
+Plug 'tyru/open-browser.vim'
 
-NeoBundle 'pangloss/vim-javascript'
+" ===== Completion =====
+Plug 'Valloric/YouCompleteMe'
 
+Plug 'marijnh/tern_for_vim'
+
+" ===== Snippets =====
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" ====== Programming Languages =====
+" Javascript
+Plug 'pangloss/vim-javascript'
+" Dart
+Plug 'dart-lang/dart-vim-plugin'
 " Coffeescript
-NeoBundle 'kchmck/vim-coffee-script'
-
+Plug 'kchmck/vim-coffee-script'
 " Node.js
 "NeoBundle 'myhere/vim-nodejs-complete'
-
-" VimGo
-NeoBundle 'kchmck/vim-coffee-script'
-
 " GLSL
-NeoBundle 'tikhomirov/vim-glsl'
-
+Plug 'tikhomirov/vim-glsl'
 " Go
-NeoBundle 'fatih/vim-go'
-
-" C++
-" NeoBundle 'justmao945/vim-clang'
-"NeoBundleLazy 'Rip-Rip/clang_complete', {
-"      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
-"      \ }
-"NeoBundleLazy 'vim-jp/cpp-vim', {
-"      \ 'autoload': {'filetype': ['cpp','hpp','h'] }
-"      \ }
-
-" NeoBundleLazy 'osyo-manga/vim-marching', {
-"       \ 'depends': ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions'],
-"       \ 'autoload': {'filetype': ['c','cpp'] }
-"       \ }
-" NeoBundle 'Valloric/YouCompleteMe'
-
+Plug 'fatih/vim-go'
+" Dockerfile
+Plug 'ekalinin/Dockerfile.vim'
 " CSS3
-NeoBundle 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax'
 " Jade
-NeoBundle 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade'
 " Stylus
-NeoBundle 'wavded/vim-stylus'
+Plug 'wavded/vim-stylus'
 " Yaml
-NeoBundle 'stephpy/vim-yaml'
+Plug 'stephpy/vim-yaml'
 " Gyp
-NeoBundle 'kelan/gyp.vim'
+Plug 'kelan/gyp.vim'
 " Markdonw
-NeoBundle 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown'
 " Markdonw preview
-NeoBundle 'kannokanno/previm'
-
-" color table
-" NeoBundle "guns/xterm-color-table.vim"
-"
-NeoBundle 'editorconfig/editorconfig-vim'
+Plug 'kannokanno/previm'
+" Editor config
+Plug 'editorconfig/editorconfig-vim'
 
 " Color Schemes
-" NeoBundle 'tomasr/molokai'
-NeoBundle 'goatslacker/mango.vim'
-" NeoBundle 'Lokaltog/vim-distinguished'
-" JS Scope Context Coloring
-" NeoBundle 'bigfish/vim-js-context-coloring'
+Plug 'w0ng/vim-hybrid'
+
+call plug#end()
 
 " ====================
 " generic options
@@ -266,7 +242,9 @@ vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 " ====================
 " VimFiler
 " ====================
-nnoremap <silent> [unite]e :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+" nnoremap <silent> [unite]e :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> e :NERDTreeToggle<CR>
+let g:NERDTreeMinimalUI = 1
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 
@@ -287,7 +265,6 @@ nmap <C-j> <Plug>(yankround-next)
 " GitGutter
 " ====================
 nnoremap <silent> ,gn :GitGutterNextHunk<CR>
-NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ====================
 " LightLine
@@ -334,17 +311,6 @@ let g:neocomplete#enable_ignore_case = 1
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#enable_fuzzy_completion = 1
 
-" let g:neocomplete#force_overwrite_completefunc = 1
-" let g:neocomplete#force_omni_input_patterns = {}
-" let g:neocomplete#force_omni_input_patterns.c =
-"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-" let g:neocomplete#force_omni_input_patterns.cpp =
-"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-" let g:neocomplete#force_omni_input_patterns.objc =
-"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-" let g:neocomplete#force_omni_input_patterns.objcpp =
-"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -361,6 +327,11 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = '~/.vim/snippets'
 
 " ====================
+" Go lang
+" ====================
+let g:go_snippet_engine = "ultisnips"
+
+" ====================
 " clang_complete
 " ====================
 " Disable auto completion, always <c-x> <c-o> to complete
@@ -372,28 +343,6 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets'
 "let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
 "let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 
-" ====================
-" vim_clang
-" ====================
-" let g:clang_auto = 1
-" let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-" let g:clang_cpp_completeopt = 'longest,menuone'
-" let g:clang_cpp_options = ''
-
-" ====================
-" vim_marching
-" ====================
-" let g:marching_clang_command = '/usr/bin/clang'
-" let g:marching_clang_command_option = '-std=c++11'
-" let g:marching_include_paths = ['/usr/include/c++/4.2.1']
-" let g:marching_enable_neocomplete = 1
-"if !exists('g:neocomplete#force_omni_input_patterns')
-"  let g:neocomplete#force_omni_input_patterns = {}
-"endif
-"let g:neocomplete#force_overwrite_completefunc = 1
-"let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-" imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
-"
 " ====================
 " YouCompleteMe
 " ====================
@@ -424,11 +373,12 @@ let g:syntastic_javascript_checkers = ['jshint']
 " ====================
 syntax enable
 set t_Co=256
-set background=dark
-colorscheme mango
+let g:hybrid_use_iTerm_colors = 1
+colorscheme hybrid
+"colorscheme mango
 "colorscheme proteus
 "colorscheme molokai
-"colorscheme distinguished
+"colorscheme jellybeans
 
 " Adjust omnifunc pop menu
 highlight Pmenu ctermbg=179 ctermfg=16 cterm=bold

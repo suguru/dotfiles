@@ -16,6 +16,7 @@ antigen-bundle history
 antigen-bundle tmux
 antigen-bundle fabric
 antigen-bundle vagrant
+antigen-bundle golang
 
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions src
