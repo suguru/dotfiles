@@ -15,16 +15,6 @@ call plug#begin('~/.vim/plugged')
 
 " NerdTree
 Plug 'scrooloose/nerdtree'
-" NerdTree Tabs
-" NeoBundle 'jistr/vim-nerdtree-tabs'
-
-" VimProc
-" NeoBundle 'Shougo/vimfiler'
-" NeoBundle 'Shougo/vimproc'
-" NeoBundle 'Shougo/vimshell'
-" Unite.vm
-" NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'Shougo/neomru.vim'
 
 " CtrlP
 Plug 'kien/ctrlp.vim'
@@ -32,8 +22,7 @@ Plug 'kien/ctrlp.vim'
 " Surround
 " NeoBundle "tpope/vim-surround"
 
-" Airline (status-bar yet another powerline)
-" NeoBundle 'bling/vim-airline'
+" Status line
 Plug 'itchyny/lightline.vim'
 
 " ===== Git =====
@@ -184,6 +173,9 @@ inoremap <F1> <nop>
 vnoremap <F1> <nop>
 " :nmap <C-N><C-N> :set invnumber<CR>
 
+" , as leader
+let mapleader = ","
+
 " tag key map
 nnoremap <silent> <C-t>l :tabnext<CR>
 nnoremap <silent> <C-t>h :tabprev<CR>
@@ -192,6 +184,30 @@ nnoremap <silent> <C-t>n :tabnew<CR>
 for n in range(1,9)
   execute 'nnoremap <silent> <C-t>'.n ':tabnext '.n.'<CR>'
 endfor
+
+" buffer
+nnoremap <silent> <Leader>bb :bprevious<CR>
+nnoremap <silent> <Leader>bf :bnext<CR>
+
+" NERDTree
+nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
+" TAGBar
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
+
+" key-bind for go
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>d <Plug>(go-doc)
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap gs <Plug>(go-def-split)
+au FileType go nmap gr <Plug>(go-rename)
+au FileType go nmap gi :GoImports<CR>
+au FileType go nmap gv :GoVet<CR>
+au FileType go nmap gl :GoLint<CR>
+" au FileType go au BufWritePre <buffer> GoLint
+
 
 " ====================
 " ctrlp
@@ -204,46 +220,8 @@ let g:ctrlp_custom_ignore = 'DS_Store\|\.git\|\.hg\|\.svn\|optimized\|compiled\|
 let g:ctrlp_open_new_file       = 1
 
 " ====================
-" unite
+" NERDTree
 " ====================
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-  nmap <silent><buffer> <ESC><ESC> q
-  imap <silent><buffer> <ESC><ESC> <ESC>q
-endfunction
-
-imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-nmap <silent><buffer> <ESC><ESC> q
-imap <silent><buffer> <ESC><ESC> <ESC>q
-nnoremap [unite] <Nop>
-nmap <Leader>u [unite]
-
-nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]d :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir file_mru<CR>
-nnoremap <silent> [unite]u :<C-u>Unite file_mru<CR>
-" nnoremap <silent> [unite]k :<C-u>Unite bookmark<CR>
-" nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
-
-" unite yank history
-let g:unite_source_history_yank_enable = 1
-nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
-
-" let g:unite_enable_start_insert = 1
-let g:unite_source_file_mru_limit = 200
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_grep_recursive_opts = ''
-let g:unite_source_grep_max_candidates = 200
-
-vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
-
-" ====================
-" VimFiler
-" ====================
-" nnoremap <silent> [unite]e :VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
-nnoremap <silent> e :NERDTreeToggle<CR>
 let g:NERDTreeMinimalUI = 1
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
@@ -251,7 +229,6 @@ let g:vimfiler_safe_mode_by_default = 0
 " ====================
 " Tagbar
 " ====================
-nnoremap <silent> <Leader>t :TagbarToggle<CR>
 
 " ====================
 " Yankround
@@ -318,30 +295,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " ====================
-" neo-snippets
-" ====================
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory = '~/.vim/snippets'
-
-" ====================
 " Go lang
 " ====================
 let g:go_snippet_engine = "ultisnips"
-
-" ====================
-" clang_complete
-" ====================
-" Disable auto completion, always <c-x> <c-o> to complete
-"let g:clang_complete_auto = 0
-"let g:clang_auto_select = 0
-"let g:clang_use_library = 1
-"let g:clang_complete_copen = 1
-"" let g:clang_debug=1
-"let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
-"let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 
 " ====================
 " YouCompleteMe
@@ -375,10 +331,6 @@ syntax enable
 set t_Co=256
 let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
-"colorscheme mango
-"colorscheme proteus
-"colorscheme molokai
-"colorscheme jellybeans
 
 " Adjust omnifunc pop menu
 highlight Pmenu ctermbg=179 ctermfg=16 cterm=bold
