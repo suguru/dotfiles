@@ -14,10 +14,13 @@ call plug#begin('~/.vim/plugged')
 " NeoBundleFetch 'Shougo/neobundle.vim'
 
 " NerdTree
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " CtrlP
 Plug 'kien/ctrlp.vim'
+
+" Vimproc
+Plug 'Shougo/vimproc.vim'
 
 " Surround
 " NeoBundle "tpope/vim-surround"
@@ -29,7 +32,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
-
+Plug 'rhysd/committia.vim'
+Plug 'idanarye/vim-merginal'
 
 " ===== Syntax Checker =====
 
@@ -66,8 +70,8 @@ Plug 'honza/vim-snippets'
 " ====== Programming Languages =====
 " Javascript
 Plug 'pangloss/vim-javascript'
-" Dart
-Plug 'dart-lang/dart-vim-plugin'
+" JSX
+Plug 'mxw/vim-jsx'
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
 " Node.js
@@ -75,15 +79,19 @@ Plug 'kchmck/vim-coffee-script'
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 " Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 " Dockerfile
 Plug 'ekalinin/Dockerfile.vim'
 " CSS3
 Plug 'hail2u/vim-css3-syntax'
 " Jade
 Plug 'digitaltoad/vim-jade'
+" handlebars
+Plug 'mustache/vim-mustache-handlebars'
 " Stylus
 Plug 'wavded/vim-stylus'
+" Less
+Plug 'groenewege/vim-less'
 " Yaml
 Plug 'stephpy/vim-yaml'
 " Gyp
@@ -94,6 +102,10 @@ Plug 'tpope/vim-markdown'
 Plug 'kannokanno/previm'
 " Editor config
 Plug 'editorconfig/editorconfig-vim'
+" Protocolbuffers
+Plug 'uarun/vim-protobuf'
+" Terraform
+Plug 'bkad/vim-terraform'
 
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
@@ -320,7 +332,7 @@ let g:syntastic_mode_map={
       \ 'active_filetypes': ['javascript'],
       \ 'passive_filetypes': ['html','cpp']
       \}
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jsxhint']
 "let g:syntastic_cpp_compiler = '/usr/bin/clang'
 "let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 
