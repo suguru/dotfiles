@@ -96,7 +96,7 @@ Plug 'wavded/vim-stylus'
 " Less
 Plug 'groenewege/vim-less'
 " Yaml
-Plug 'stephpy/vim-yaml'
+Plug 'chase/vim-ansible-yaml'
 " Gyp
 Plug 'kelan/gyp.vim'
 " Markdonw
