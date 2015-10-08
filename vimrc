@@ -71,6 +71,8 @@ Plug 'honza/vim-snippets'
 " ====== Programming Languages =====
 " Javascript
 Plug 'pangloss/vim-javascript'
+" JSON
+Plug 'elzr/vim-json'
 " JSX
 Plug 'mxw/vim-jsx'
 " Coffeescript
