@@ -1,16 +1,16 @@
 [user]
-	name = Suguru Namura
 	email = snamura@gmail.com
+	name = Suguru Namura
 [core]
 	excludesfile = /Users/a10682/.gitignore_global
   pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [difftool "sourcetree"]
-	cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
   md = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 [credential]
   helper = osxkeychain
 [rebase]
@@ -31,4 +31,5 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
-
+[alias]
+  tree = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
