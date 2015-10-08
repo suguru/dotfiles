@@ -342,6 +342,7 @@ let g:syntastic_javascript_checkers = ['jsxhint']
 " ====================
 syntax enable
 set t_Co=256
+set background=dark
 let g:hybrid_use_iTerm_colors = 1
 colorscheme hybrid
 
