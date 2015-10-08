@@ -75,6 +75,12 @@ Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 " JSX
 Plug 'mxw/vim-jsx'
+" Flow
+" Plug 'facebook/vim-flow'
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
 " Node.js
@@ -317,6 +323,16 @@ let g:neocomplete#enable_ignore_case = 1
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#enable_fuzzy_completion = 1
 
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
+" let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w\.\w*'
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -327,6 +343,11 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Go lang
 " ====================
 let g:go_snippet_engine = "ultisnips"
+
+" ====================
+" Typescript
+" ====================
+let g:typescript_compiler_options = '--jsx react --module umd'
 
 " ====================
 " YouCompleteMe
@@ -346,10 +367,12 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map={
       \ 'mode': 'active',
-      \ 'active_filetypes': ['javascript'],
+      \ 'active_filetypes': ['javascript','json','jsx','typescript'],
       \ 'passive_filetypes': ['html','cpp']
       \}
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['eslint'] ",'flow']
+let g:syntastic_go_checkers = ['go', 'golint', 'go vet']
+let g:syntastic_typescript_checkers = ['tslint']
 "let g:syntastic_cpp_compiler = '/usr/bin/clang'
 "let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 
@@ -376,8 +399,10 @@ highlight Noise ctermfg=216
 " ====================
 " file types
 " ====================
-au! BufRead,BufNewFile *.json set filetype=javascript
+" au! BufRead,BufNewFile *.json set filetype=javascript
 " au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+autocmd BufNewFile,BufRead *.ts  set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 " ====================
 " disable IME when pushed ESC
