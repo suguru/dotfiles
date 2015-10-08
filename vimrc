@@ -109,6 +109,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'uarun/vim-protobuf'
 " Terraform
 Plug 'bkad/vim-terraform'
+" Gradle
+Plug 'tfnico/vim-gradle'
 
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
