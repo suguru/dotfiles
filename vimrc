@@ -59,7 +59,8 @@ Plug 'thinca/vim-quickrun'
 Plug 'tyru/open-browser.vim'
 
 " ===== Completion =====
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/neocomplete'
 
 Plug 'marijnh/tern_for_vim'
 
