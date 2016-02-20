@@ -1,16 +1,26 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+#
+# User configuration sourced by interactive shells
+#
 
+# Source zim
+if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
+fi
+# Path to your oh-my-zsh installation.
+#source ~/.zplug/zplug
+#zplug "zsh-users/zsh-syntax-highlighting"
+#zplug "zsh-users/zsh-history-substring-search"
+#zplug "junegunn/dotfiles", as:command, of:bin/vimcat
+#zplug "tcnksm/docker-alias", of:zshrc, as:plugin
+#zplug load
 bindkey -e
 
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.config/zsh_history
 
-# oh-my-zsh
 export ZSH_THEME="steeef"
 
-source $ZSH/oh-my-zsh.sh
 source $HOME/.zshenv
 
 bindkey ^r zaw-history
@@ -24,13 +34,12 @@ export NDK_ROOT='/usr/local/opt/android-ndk'
 export ANDROID_HOME='/usr/local/opt/android-sdk'
 export ANDROID_SDK_ROOT='/usr/local/opt/android-sdk'
 
-plugins=(git)
+plugins=(git docker go)
 
 alias ll="ls -lh"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -e '/opt/homebrew-cask/Caskroom/google-cloud-sdk' ]; then
-  source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-  source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+if [ -e '$HOME/google-cloud-sdk' ]; then
+  source '$HOME/google-cloud-sdk/path.zsh.inc'
+  source '$HOME/google-cloud-sdk/completion.zsh.inc'
 fi
-
