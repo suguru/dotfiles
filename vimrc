@@ -1,127 +1,140 @@
 autocmd!
 
-set nocompatible
 filetype off
 
-"if has('vim_starting')
-"  set runtimepath+=~/.vim/bundle/neobundle.vim
-"endif
+" skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-call plug#begin('~/.vim/plugged')
-"call neobundle#rc(expand('~/.vim/bundle/'))
+if has('vim_starting')
+  if &compatible
+    set nocompatible
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
+
+call neobundle#begin(expand('~/.vim/bundle'))
+
+"call plug#begin('~/.vim/plugged')
 
 " NeoBundle
-" NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " NerdTree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+NeoBundle 'scrooloose/nerdtree'
 
 " CtrlP
-Plug 'kien/ctrlp.vim'
+NeoBundle 'kien/ctrlp.vim'
 
 " Vimproc
-Plug 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build': {
+\   'mac': 'make',
+\ },
+\ }
 
 " Surround
 " NeoBundle "tpope/vim-surround"
 
 " Status line
-Plug 'itchyny/lightline.vim'
+NeoBundle 'itchyny/lightline.vim'
 
 " ===== Git =====
-Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv'
-Plug 'airblade/vim-gitgutter'
-Plug 'rhysd/committia.vim'
-Plug 'idanarye/vim-merginal'
+NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'gregsexton/gitv'
+NeoBundle 'airblade/vim-gitgutter'
+" NeoBundle 'rhysd/committia.vim'
+" NeoBundle 'idanarye/vim-merginal'
 
 " ===== Syntax Checker =====
 
-Plug 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
 " ===== Tagbar ======
 
-Plug 'majutsushi/tagbar'
+NeoBundle 'majutsushi/tagbar'
 
 " ===== Controls ======
 
-Plug 'osyo-manga/vim-over'
+NeoBundle 'osyo-manga/vim-over'
 
 " Vim Multi cursor
 " NeoBundle 'terryma/vim-multiple-cursors'
 
-Plug 'LeafCage/yankround.vim'
+NeoBundle 'LeafCage/yankround.vim'
 
-Plug 't9md/vim-choosewin'
+NeoBundle 'easymotion/vim-easymotion'
 
-Plug 'thinca/vim-quickrun'
+" NeoBundle 't9md/vim-choosewin'
+" NeoBundle 'thinca/vim-quickrun'
 
-Plug 'tyru/open-browser.vim'
+NeoBundle 'tyru/open-browser.vim'
 
 " ===== Completion =====
 " Plug 'Valloric/YouCompleteMe'
-Plug 'Shougo/neocomplete'
+NeoBundleLazy 'Shougo/neocomplete', { 'autoload': { 'insert': 1 }}
 
-Plug 'marijnh/tern_for_vim'
+NeoBundleLazy 'marijnh/tern_for_vim', {
+  \ 'autoload': { 'filetypes': 'javascript' },
+  \ 'build': {
+  \   'others': 'npm install'
+  \ }}
 
 " ===== Snippets =====
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 " ====== Programming Languages =====
 " Javascript
-Plug 'pangloss/vim-javascript'
+NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes': 'javascript' }}
 " JSON
-Plug 'elzr/vim-json'
+NeoBundleLazy 'elzr/vim-json', { 'autoload': { 'filetypes': 'json' }}
 " JSX
-Plug 'mxw/vim-jsx'
-" Flow
-" Plug 'facebook/vim-flow'
+NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes': 'javascript' }}
 " Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
+NeoBundleLazy 'leafgarland/typescript-vim', { 'autoload': { 'filetypes': 'typescript' }}
+NeoBundleLazy 'Quramy/tsuquyomi', { 'autoload': { 'filetypes': 'typescript' }}
 
 " Coffeescript
-Plug 'kchmck/vim-coffee-script'
+NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': 'coffeescript' }}
 " Node.js
 "NeoBundle 'myhere/vim-nodejs-complete'
 " GLSL
-Plug 'tikhomirov/vim-glsl'
+NeoBundleLazy 'tikhomirov/vim-glsl', { 'autoload': { 'filetypes': 'glsl' }}
 " Go
-Plug 'fatih/vim-go', { 'for': 'go' }
+NeoBundleLazy 'fatih/vim-go', { 'autoload': { 'filetypes': 'go' }}
 " Dockerfile
-Plug 'ekalinin/Dockerfile.vim'
+NeoBundleLazy 'ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }}
 " CSS3
-Plug 'hail2u/vim-css3-syntax'
+NeoBundleLazy 'hail2u/vim-css3-syntax', { 'autoload': { 'filetypes': 'css' }}
 " Jade
-Plug 'digitaltoad/vim-jade'
+NeoBundleLazy 'digitaltoad/vim-pug', { 'autoload': { 'filetypes': 'pug' }}
 " handlebars
-Plug 'mustache/vim-mustache-handlebars'
+NeoBundleLazy 'mustache/vim-mustache-handlebars', { 'autoload': { 'filetypes': 'handlebars' }}
 " Stylus
-Plug 'wavded/vim-stylus'
+NeoBundleLazy 'wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }}
 " Less
-Plug 'groenewege/vim-less'
+NeoBundleLazy 'groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }}
 " Yaml
-Plug 'chase/vim-ansible-yaml'
-" Gyp
-Plug 'kelan/gyp.vim'
-" Markdonw
-Plug 'tpope/vim-markdown'
-" Markdonw preview
-Plug 'kannokanno/previm'
+NeoBundleLazy 'stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }}
+" Handlebars
+" Markdown
+NeoBundleLazy 'tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }}
+" Markdown preview
+NeoBundleLazy 'kannokanno/previm', { 'autoload': { 'filetypes': 'markdown' }}
 " Editor config
-Plug 'editorconfig/editorconfig-vim'
+NeoBundle 'editorconfig/editorconfig-vim'
 " Protocolbuffers
-Plug 'uarun/vim-protobuf'
+NeoBundleLazy 'uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }}
 " Terraform
-Plug 'bkad/vim-terraform'
+NeoBundleLazy 'bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }}
 " Gradle
-Plug 'tfnico/vim-gradle'
+NeoBundleLazy 'tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }}
 
 " Color Schemes
-Plug 'w0ng/vim-hybrid'
+NeoBundle 'w0ng/vim-hybrid'
 
-call plug#end()
+" call plug#end()
+call neobundle#end()
 
 " ====================
 " generic options
@@ -209,8 +222,8 @@ for n in range(1,9)
 endfor
 
 " buffer
-nnoremap <silent> <Leader>bb :bprevious<CR>
-nnoremap <silent> <Leader>bf :bnext<CR>
+nnoremap <silent> <C-b>p :bprevious<CR>
+nnoremap <silent> <C-b>n :bnext<CR>
 
 " NERDTree
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
@@ -227,8 +240,10 @@ au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap gs <Plug>(go-def-split)
 au FileType go nmap gr <Plug>(go-rename)
 au FileType go nmap gi :GoImports<CR>
-au FileType go nmap gv :GoVet<CR>
-au FileType go nmap gl :GoLint<CR>
+au FileType go nmap gl :GoMetaLinter<CR>
+au FileType go nmap gc :GoCallees<CR>
+au FileType go nmap gr :GoReferrers<CR>
+au FileType go nmap gm :GoRename<CR>
 
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
@@ -238,11 +253,12 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " au FileType go au BufWritePre <buffer> GoLint
 let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-" let g:go_fmt_command = "goimports"
+"let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "gofmt"
+let g:go_fmt_fail_silently = 1
 
 " ====================
 " ctrlp
@@ -282,16 +298,19 @@ nnoremap <silent> ,gn :GitGutterNextHunk<CR>
 " LightLine
 " ====================
 let g:lightline = {
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [
-      \     ['mode'],
-      \     ['readonly', 'fugitive', 'filename', 'modified']
-      \   ]
+      \     ['mode', 'paste'], ['readoly', 'fugitive', 'filename', 'modified'],
+      \   ],
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"*":&modifiable?"":"-"}',
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_function': {
+      \    'fugitive': 'LightLineFugitive',
       \ },
       \ 'component_visible_condition': {
       \   'readonly': '(&filetype!="help"&& &readonly)',
@@ -317,27 +336,67 @@ let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_ignore_case = 1
+let g:neocomplete#auto_completion_start_length=2
 " let g:neocomplete#max_list = 5
 " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#enable_fuzzy_completion = 1
+set completeopt=menuone
 
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+	let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return neocomplete#close_popup() . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplete#close_popup()
+inoremap <expr><C-e> neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+ 
+
+" Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
-" let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w\.\w*'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
+"let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
+"let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType typescript setlocal completeopt+=menu,preview
 
 " ====================
 " Go lang
@@ -345,9 +404,19 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let g:go_snippet_engine = "ultisnips"
 
 " ====================
+" Javascript
+" ====================
+let g:jsx_ext_required = 0
+
+" ====================
+" Flowtype
+" ====================
+let g:flow#autoclose = 1
+
+" ====================
 " Typescript
 " ====================
-let g:typescript_compiler_options = '--jsx react --module umd'
+" let g:typescript_compiler_options = '--jsx react --module commonjs'
 
 " ====================
 " YouCompleteMe
@@ -357,6 +426,10 @@ let g:typescript_compiler_options = '--jsx react --module umd'
 "let g:ycm_filepath_completion_use_working_dir = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
 "nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " ====================
 " syntastic
@@ -371,7 +444,7 @@ let g:syntastic_mode_map={
       \ 'passive_filetypes': ['html','cpp']
       \}
 let g:syntastic_javascript_checkers = ['eslint'] ",'flow']
-let g:syntastic_go_checkers = ['go', 'golint', 'go vet']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 let g:syntastic_typescript_checkers = ['tslint']
 "let g:syntastic_cpp_compiler = '/usr/bin/clang'
 "let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
@@ -401,8 +474,10 @@ highlight Noise ctermfg=216
 " ====================
 " au! BufRead,BufNewFile *.json set filetype=javascript
 " au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-autocmd BufNewFile,BufRead *.ts  set filetype=typescript
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.ts  setlocal filetype=typescript
+autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript
+autocmd BufNewFile,BufRead *.go  setlocal filetype=go
+autocmd BufNewFile,BufRead *.jade setlocal filetype=pug
 
 " ====================
 " disable IME when pushed ESC
