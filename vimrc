@@ -5,136 +5,136 @@ filetype off
 " skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
-if has('vim_starting')
-  if &compatible
-    set nocompatible
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim
+if &compatible
+  set nocompatible
 endif
 
-call neobundle#begin(expand('~/.vim/bundle'))
+set runtimepath+=~/.vim/dein.vim
 
-"call plug#begin('~/.vim/plugged')
+call dein#begin(expand('~/.vim/dein_cache'))
 
-" NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+if dein#load_cache()
 
 " NerdTree
-NeoBundle 'scrooloose/nerdtree'
+call dein#add('scrooloose/nerdtree')
 
 " CtrlP
-NeoBundle 'kien/ctrlp.vim'
+call dein#add('kien/ctrlp.vim')
 
 " Vimproc
-NeoBundle 'Shougo/vimproc.vim', {
+call dein#add('Shougo/vimproc.vim', {
 \ 'build': {
 \   'mac': 'make',
 \ },
-\ }
+\ })
 
 " Surround
 " NeoBundle "tpope/vim-surround"
 
 " Status line
-NeoBundle 'itchyny/lightline.vim'
+call dein#add('itchyny/lightline.vim')
 
 " ===== Git =====
-NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'gregsexton/gitv'
-NeoBundle 'airblade/vim-gitgutter'
-" NeoBundle 'rhysd/committia.vim'
-" NeoBundle 'idanarye/vim-merginal'
+call dein#add('tpope/vim-fugitive')
+call dein#add('airblade/vim-gitgutter')
 
 " ===== Syntax Checker =====
 
-NeoBundle 'scrooloose/syntastic'
+call dein#add('scrooloose/syntastic')
 
 " ===== Tagbar ======
 
-NeoBundle 'majutsushi/tagbar'
+call dein#add('majutsushi/tagbar')
 
 " ===== Controls ======
 
-NeoBundle 'osyo-manga/vim-over'
+call dein#add('osyo-manga/vim-over')
 
 " Vim Multi cursor
 " NeoBundle 'terryma/vim-multiple-cursors'
 
-NeoBundle 'LeafCage/yankround.vim'
+call dein#add('LeafCage/yankround.vim')
 
-NeoBundle 'easymotion/vim-easymotion'
-
+" NeoBundle 'easymotion/vim-easymotion'
 " NeoBundle 't9md/vim-choosewin'
 " NeoBundle 'thinca/vim-quickrun'
 
-NeoBundle 'tyru/open-browser.vim'
+call dein#add('tyru/open-browser.vim')
 
 " ===== Completion =====
 " Plug 'Valloric/YouCompleteMe'
-NeoBundleLazy 'Shougo/neocomplete', { 'autoload': { 'insert': 1 }}
+call dein#add('Shougo/neocomplete', { 'autoload': { 'insert': 1 }})
 
-NeoBundleLazy 'marijnh/tern_for_vim', {
+call dein#add('marijnh/tern_for_vim', {
   \ 'autoload': { 'filetypes': 'javascript' },
   \ 'build': {
   \   'others': 'npm install'
-  \ }}
+  \ },
+  \ 'lazy': 1})
 
 " ===== Snippets =====
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+" call dein#add('SirVer/ultisnips')
+" call dein#add('honza/vim-snippets')
 
 " ====== Programming Languages =====
 " Javascript
-NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes': 'javascript' }}
+call dein#add('pangloss/vim-javascript', { 'autoload': { 'filetypes': 'javascript' }, 'lazy': 1})
 " JSON
-NeoBundleLazy 'elzr/vim-json', { 'autoload': { 'filetypes': 'json' }}
+call dein#add('elzr/vim-json', { 'autoload': { 'filetypes': 'json' }, 'lazy': 1})
 " JSX
-NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes': 'javascript' }}
+call dein#add('mxw/vim-jsx', { 'autoload': { 'filetypes': 'javascript' }, 'lazy': 1})
 " Typescript
-NeoBundleLazy 'leafgarland/typescript-vim', { 'autoload': { 'filetypes': 'typescript' }}
-NeoBundleLazy 'Quramy/tsuquyomi', { 'autoload': { 'filetypes': 'typescript' }}
+call dein#add('leafgarland/typescript-vim', { 'autoload': { 'filetypes': 'typescript' }, 'lazy': 1})
+call dein#add('Quramy/tsuquyomi', { 'autoload': { 'filetypes': 'typescript' }, 'lazy': 1})
 
 " Coffeescript
-NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': 'coffeescript' }}
+call dein#add('kchmck/vim-coffee-script', { 'autoload': { 'filetypes': 'coffeescript' }, 'lazy': 1})
 " Node.js
-"NeoBundle 'myhere/vim-nodejs-complete'
+call dein#add('myhere/vim-nodejs-complete', { 'lazy': 1})
 " GLSL
-NeoBundleLazy 'tikhomirov/vim-glsl', { 'autoload': { 'filetypes': 'glsl' }}
+call dein#add('tikhomirov/vim-glsl', { 'autoload': { 'filetypes': 'glsl' }, 'lazy': 1})
 " Go
-NeoBundleLazy 'fatih/vim-go', { 'autoload': { 'filetypes': 'go' }}
+call dein#add('fatih/vim-go', { 'autoload': { 'filetypes': 'go' }, 'lazy': 1})
 " Dockerfile
-NeoBundleLazy 'ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }}
+call dein#add('ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }, 'lazy': 1})
 " CSS3
-NeoBundleLazy 'hail2u/vim-css3-syntax', { 'autoload': { 'filetypes': 'css' }}
+call dein#add('hail2u/vim-css3-syntax', { 'autoload': { 'filetypes': 'css' }, 'lazy': 1})
 " Jade
-NeoBundleLazy 'digitaltoad/vim-pug', { 'autoload': { 'filetypes': 'pug' }}
+call dein#add('digitaltoad/vim-pug', { 'autoload': { 'filetypes': 'pug' }, 'lazy': 1})
 " handlebars
-NeoBundleLazy 'mustache/vim-mustache-handlebars', { 'autoload': { 'filetypes': 'handlebars' }}
+call dein#add('mustache/vim-mustache-handlebars', { 'autoload': { 'filetypes': 'handlebars' }, 'lazy': 1})
 " Stylus
-NeoBundleLazy 'wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }}
+call dein#add('wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }, 'lazy': 1})
 " Less
-NeoBundleLazy 'groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }}
+call dein#add('groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }, 'lazy': 1})
 " Yaml
-NeoBundleLazy 'stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }}
+call dein#add('stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }, 'lazy': 1})
 " Handlebars
 " Markdown
-NeoBundleLazy 'tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }}
+call dein#add('tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }, 'lazy': 1})
 " Markdown preview
-NeoBundleLazy 'kannokanno/previm', { 'autoload': { 'filetypes': 'markdown' }}
+call dein#add('kannokanno/previm', { 'autoload': { 'filetypes': 'markdown' }, 'lazy': 1})
 " Editor config
-NeoBundle 'editorconfig/editorconfig-vim'
+call dein#add('editorconfig/editorconfig-vim')
 " Protocolbuffers
-NeoBundleLazy 'uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }}
+call dein#add('uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }, 'lazy': 1})
 " Terraform
-NeoBundleLazy 'bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }}
+call dein#add('bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }, 'lazy': 1})
 " Gradle
-NeoBundleLazy 'tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }}
+call dein#add('tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }, 'lazy': 1})
 
 " Color Schemes
-NeoBundle 'w0ng/vim-hybrid'
+call dein#add('w0ng/vim-hybrid')
 
-" call plug#end()
-call neobundle#end()
+call dein#save_cache()
+
+endif
+
+call dein#end()
+
+if dein#check_install()
+  call dein#install()
+endif
 
 " ====================
 " generic options
