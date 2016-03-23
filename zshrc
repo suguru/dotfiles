@@ -8,7 +8,6 @@
 #zplug "zsh-users/zsh-history-substring-search"
 #zplug "junegunn/dotfiles", as:command, of:bin/vimcat
 #zplug "tcnksm/docker-alias", of:zshrc, as:plugin
-#zplug load
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -18,6 +17,8 @@ source $HOME/.zshenv
 
 export GOPATH=$HOME/gocode
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin
+
+export XDG_CONFIG_HOME=~/.config
 
 export ANT_ROOT='/usr/local/opt/ant/bin'
 export NDK_ROOT='/usr/local/opt/android-ndk'

@@ -2,18 +2,16 @@ autocmd!
 
 filetype off
 
-" skip initialization for vim-tiny or vim-small.
-if 0 | endif
-
 if &compatible
   set nocompatible
 endif
 
 set runtimepath+=~/.vim/dein.vim
 
-call dein#begin(expand('~/.vim/dein_cache'))
+let s:dein_dir = expand('~/.vim/dein_cache')
+if dein#load_state(s:dein_dir)
 
-if dein#load_cache()
+call dein#begin(s:dein_dir)
 
 " NerdTree
 call dein#add('scrooloose/nerdtree')
@@ -22,11 +20,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('kien/ctrlp.vim')
 
 " Vimproc
-call dein#add('Shougo/vimproc.vim', {
-\ 'build': {
-\   'mac': 'make',
-\ },
-\ })
+call dein#add('Shougo/vimproc.vim', { 'build': { 'mac': 'make' }})
 
 " Surround
 " NeoBundle "tpope/vim-surround"
@@ -50,27 +44,18 @@ call dein#add('majutsushi/tagbar')
 
 call dein#add('osyo-manga/vim-over')
 
-" Vim Multi cursor
-" NeoBundle 'terryma/vim-multiple-cursors'
-
 call dein#add('LeafCage/yankround.vim')
-
-" NeoBundle 'easymotion/vim-easymotion'
-" NeoBundle 't9md/vim-choosewin'
-" NeoBundle 'thinca/vim-quickrun'
 
 call dein#add('tyru/open-browser.vim')
 
 " ===== Completion =====
-" Plug 'Valloric/YouCompleteMe'
-call dein#add('Shougo/neocomplete', { 'autoload': { 'insert': 1 }})
+if has('nvim')
+  call dein#add('Shougo/deoplete.nvim', { 'autoload': { 'insert': 1 }})
+else
+  call dein#add('Shougo/neocomplete', { 'autoload': { 'insert': 1 }})
+endif
 
-call dein#add('marijnh/tern_for_vim', {
-  \ 'autoload': { 'filetypes': 'javascript' },
-  \ 'build': {
-  \   'others': 'npm install'
-  \ },
-  \ 'lazy': 1})
+call dein#add('marijnh/tern_for_vim', { 'autoload': { 'filetypes': 'javascript' }, 'build': { 'others': 'npm install' }})
 
 " ===== Snippets =====
 " call dein#add('SirVer/ultisnips')
@@ -78,59 +63,61 @@ call dein#add('marijnh/tern_for_vim', {
 
 " ====== Programming Languages =====
 " Javascript
-call dein#add('pangloss/vim-javascript', { 'autoload': { 'filetypes': 'javascript' }, 'lazy': 1})
+call dein#add('pangloss/vim-javascript', { 'autoload': { 'filetypes': 'javascript' }})
 " JSON
-call dein#add('elzr/vim-json', { 'autoload': { 'filetypes': 'json' }, 'lazy': 1})
+call dein#add('elzr/vim-json', { 'autoload': { 'filetypes': 'json' }})
 " JSX
-call dein#add('mxw/vim-jsx', { 'autoload': { 'filetypes': 'javascript' }, 'lazy': 1})
+call dein#add('mxw/vim-jsx', { 'autoload': { 'filetypes': 'javascript' }})
 " Typescript
-call dein#add('leafgarland/typescript-vim', { 'autoload': { 'filetypes': 'typescript' }, 'lazy': 1})
-call dein#add('Quramy/tsuquyomi', { 'autoload': { 'filetypes': 'typescript' }, 'lazy': 1})
+call dein#add('leafgarland/typescript-vim', { 'autoload': { 'filetypes': 'typescript' }})
+call dein#add('Quramy/tsuquyomi', { 'autoload': { 'filetypes': 'typescript' }})
 
 " Coffeescript
-call dein#add('kchmck/vim-coffee-script', { 'autoload': { 'filetypes': 'coffeescript' }, 'lazy': 1})
+call dein#add('kchmck/vim-coffee-script', { 'autoload': { 'filetypes': 'coffeescript' }})
 " Node.js
-call dein#add('myhere/vim-nodejs-complete', { 'lazy': 1})
+call dein#add('myhere/vim-nodejs-complete')
 " GLSL
-call dein#add('tikhomirov/vim-glsl', { 'autoload': { 'filetypes': 'glsl' }, 'lazy': 1})
+call dein#add('tikhomirov/vim-glsl', { 'autoload': { 'filetypes': 'glsl' }})
 " Go
-call dein#add('fatih/vim-go', { 'autoload': { 'filetypes': 'go' }, 'lazy': 1})
+call dein#add('fatih/vim-go', { 'autoload': { 'filetypes': 'go' }})
+
+if has('nvim')
+  call dein#add('zchee/deoplete-go', { 'autoload': { 'filetypes': 'go' }, 'build': {'unix':'make', 'mac':'make'}})
+endif
 " Dockerfile
-call dein#add('ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }, 'lazy': 1})
+call dein#add('ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }})
 " CSS3
-call dein#add('hail2u/vim-css3-syntax', { 'autoload': { 'filetypes': 'css' }, 'lazy': 1})
+call dein#add('hail2u/vim-css3-syntax', { 'autoload': { 'filetypes': 'css' }})
 " Jade
-call dein#add('digitaltoad/vim-pug', { 'autoload': { 'filetypes': 'pug' }, 'lazy': 1})
+call dein#add('digitaltoad/vim-pug', { 'autoload': { 'filetypes': 'pug' }})
 " handlebars
-call dein#add('mustache/vim-mustache-handlebars', { 'autoload': { 'filetypes': 'handlebars' }, 'lazy': 1})
+call dein#add('mustache/vim-mustache-handlebars', { 'autoload': { 'filetypes': 'handlebars' }})
 " Stylus
-call dein#add('wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }, 'lazy': 1})
+call dein#add('wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }})
 " Less
-call dein#add('groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }, 'lazy': 1})
+call dein#add('groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }})
 " Yaml
-call dein#add('stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }, 'lazy': 1})
+call dein#add('stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }})
 " Handlebars
 " Markdown
-call dein#add('tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }, 'lazy': 1})
+call dein#add('tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }})
 " Markdown preview
-call dein#add('kannokanno/previm', { 'autoload': { 'filetypes': 'markdown' }, 'lazy': 1})
+call dein#add('kannokanno/previm', { 'autoload': { 'filetypes': 'markdown' }})
 " Editor config
 call dein#add('editorconfig/editorconfig-vim')
 " Protocolbuffers
-call dein#add('uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }, 'lazy': 1})
+call dein#add('uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }})
 " Terraform
-call dein#add('bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }, 'lazy': 1})
+call dein#add('bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }})
 " Gradle
-call dein#add('tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }, 'lazy': 1})
+call dein#add('tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }})
 
 " Color Schemes
 call dein#add('w0ng/vim-hybrid')
 
-call dein#save_cache()
-
-endif
-
 call dein#end()
+call dein#save_state()
+endif
 
 if dein#check_install()
   call dein#install()
@@ -155,6 +142,9 @@ set showmatch
 set laststatus=2
 set cursorline
 set ttyfast
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
 " cursor
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -190,7 +180,11 @@ set ignorecase
 " ====================
 " clip board
 " ====================
-set clipboard=unnamed,autoselect
+if has('nvim')
+  set clipboard+=unnamedplus
+else
+  set clipboard=unnamed,autoselect
+endif
 
 " ====================
 " file encoding
@@ -327,69 +321,85 @@ let g:choosewin_overlay_enable = 1
 let g:choosewin_overlay_clear_multibyte = 1
 
 " ====================
-" neocomplete
+" neocomplete / deoplete
 " ====================
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_ignore_case = 1
-let g:neocomplete#auto_completion_start_length=2
-" let g:neocomplete#max_list = 5
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#enable_fuzzy_completion = 1
-set completeopt=menuone
 
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-	let g:neocomplete#keyword_patterns = {}
+if has('nvim')
+  " Use deoplete
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#enable_ignore_case = 1
+  let g:deoplete#auto_completion_start_length=2
+  let g:deoplete#sources#syntax#min_keyword_length = 1
+  let g:deoplete#enable_fuzzy_completion = 1
+
+  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+	inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
+
+  let g:deoplete#sources#go#align_class = 1
+
+
+else
+
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#enable_ignore_case = 1
+  let g:neocomplete#auto_completion_start_length=2
+  let g:neocomplete#sources#syntax#min_keyword_length = 1
+  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+  let g:neocomplete#enable_fuzzy_completion = 1
+  set completeopt=menuone
+
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " Plugin key-mappings.
+  inoremap <expr><C-g>     neocomplete#undo_completion()
+  inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+  " Recommended key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplete#close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  endfunction
+  " <TAB>: completion.
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y> neocomplete#close_popup()
+  inoremap <expr><C-e> neocomplete#cancel_popup()
+  " Close popup by <Space>.
+  "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
+  "let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
+  "let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return neocomplete#close_popup() . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
- 
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
-"let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
-let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
-"let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -397,11 +407,13 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType go setlocal completeopt+=noinsert,noselect
+
 
 " ====================
 " Go lang
 " ====================
-let g:go_snippet_engine = "ultisnips"
+" let g:go_snippet_engine = "ultisnips"
 
 " ====================
 " Javascript
