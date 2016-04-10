@@ -9,6 +9,10 @@ endif
 set runtimepath+=~/.vim/dein.vim
 
 let s:dein_dir = expand('~/.vim/dein_cache')
+if !has('nvim')
+  let s:dein_dir = expand('~/.vim/dein_cache_vim')
+endif
+
 if dein#load_state(s:dein_dir)
 
 call dein#begin(s:dein_dir)
@@ -111,6 +115,8 @@ call dein#add('uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }})
 call dein#add('bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }})
 " Gradle
 call dein#add('tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }})
+" APIBluePrint
+call dein#add('kylef/apiblueprint.vim', { 'autoload': { 'filetypes': 'apiblueprint' }})
 
 " Color Schemes
 call dein#add('w0ng/vim-hybrid')
@@ -182,6 +188,15 @@ set ignorecase
 " ====================
 if has('nvim')
   set clipboard+=unnamedplus
+  function! ClipboardYank()
+    call system('pbcopy', @@)
+  endfunction
+  function! ClipboardPaste()
+    let @@ = system('pbpaste')
+  endfunction
+  vnoremap <silent> y y:call ClipboardYank()<cr>
+  vnoremap <silent> d d:call ClipboardYank()<cr>
+  nnoremap <silent> p :call ClipboardPaste()<cr>p
 else
   set clipboard=unnamed,autoselect
 endif
