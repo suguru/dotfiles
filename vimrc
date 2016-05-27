@@ -88,6 +88,13 @@ call dein#add('fatih/vim-go', { 'autoload': { 'filetypes': 'go' }})
 if has('nvim')
   call dein#add('zchee/deoplete-go', { 'autoload': { 'filetypes': 'go' }, 'build': {'unix':'make', 'mac':'make'}})
 endif
+
+" Python
+call dein#add('davidhalter/jedi-vim', { 'autoload': { 'filetypes': 'python' }})
+call dein#add('andviro/flake8-vim', { 'autoload': { 'filetypes': 'python' }})
+call dein#add('hynek/vim-python-pep8-indent', { 'autoload': { 'filetypes': 'python' }})
+call dein#add('jmcantrell/vim-virtualenv', { 'autoload': { 'filetypes': 'python' }})
+
 " Dockerfile
 call dein#add('ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }})
 " CSS3
@@ -102,6 +109,8 @@ call dein#add('wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }})
 call dein#add('groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }})
 " Yaml
 call dein#add('stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }})
+" Toml
+call dein#add('cespare/vim-toml', { 'autoload': { 'filetypes': 'yaml' }})
 " Handlebars
 " Markdown
 call dein#add('tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }})
@@ -113,6 +122,8 @@ call dein#add('editorconfig/editorconfig-vim')
 call dein#add('uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }})
 " Terraform
 call dein#add('bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }})
+" nginx
+call dein#add('fatih/vim-nginx')
 " Gradle
 call dein#add('tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }})
 " APIBluePrint
@@ -350,8 +361,8 @@ if has('nvim')
   let g:deoplete#sources#syntax#min_keyword_length = 1
   let g:deoplete#enable_fuzzy_completion = 1
 
-  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-	inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
+"  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+"  inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
 
   let g:deoplete#sources#go#align_class = 1
 
