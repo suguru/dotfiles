@@ -1,2 +1,4 @@
 vim/bundle/*
+vim/dein_cache/
+vim/dein.vim/
 bash_private

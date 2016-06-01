@@ -2,10 +2,6 @@ autocmd!
 
 filetype off
 
-if &compatible
-  set nocompatible
-endif
-
 set runtimepath+=~/.vim/dein.vim
 
 let s:dein_dir = expand('~/.vim/dein_cache')
@@ -17,120 +13,11 @@ if dein#load_state(s:dein_dir)
 
 call dein#begin(s:dein_dir)
 
-" NerdTree
-call dein#add('scrooloose/nerdtree')
-
-" CtrlP
-call dein#add('kien/ctrlp.vim')
-
-" Vimproc
-call dein#add('Shougo/vimproc.vim', { 'build': { 'mac': 'make' }})
-
-" Surround
-" NeoBundle "tpope/vim-surround"
-
-" Status line
-call dein#add('itchyny/lightline.vim')
-
-" ===== Git =====
-call dein#add('tpope/vim-fugitive')
-call dein#add('airblade/vim-gitgutter')
-
-" ===== Syntax Checker =====
-
-call dein#add('scrooloose/syntastic')
-
-" ===== Tagbar ======
-
-call dein#add('majutsushi/tagbar')
-
-" ===== Controls ======
-
-call dein#add('osyo-manga/vim-over')
-
-call dein#add('LeafCage/yankround.vim')
-
-call dein#add('tyru/open-browser.vim')
-
-" ===== Completion =====
-if has('nvim')
-  call dein#add('Shougo/deoplete.nvim', { 'autoload': { 'insert': 1 }})
-else
-  call dein#add('Shougo/neocomplete', { 'autoload': { 'insert': 1 }})
-endif
-
-call dein#add('marijnh/tern_for_vim', { 'autoload': { 'filetypes': 'javascript' }, 'build': { 'others': 'npm install' }})
-
-" ===== Snippets =====
-" call dein#add('SirVer/ultisnips')
-" call dein#add('honza/vim-snippets')
-
-" ====== Programming Languages =====
-" Javascript
-call dein#add('pangloss/vim-javascript', { 'autoload': { 'filetypes': 'javascript' }})
-" JSON
-call dein#add('elzr/vim-json', { 'autoload': { 'filetypes': 'json' }})
-" JSX
-call dein#add('mxw/vim-jsx', { 'autoload': { 'filetypes': 'javascript' }})
-" Typescript
-call dein#add('leafgarland/typescript-vim', { 'autoload': { 'filetypes': 'typescript' }})
-call dein#add('Quramy/tsuquyomi', { 'autoload': { 'filetypes': 'typescript' }})
-
-" Coffeescript
-call dein#add('kchmck/vim-coffee-script', { 'autoload': { 'filetypes': 'coffeescript' }})
-" Node.js
-call dein#add('myhere/vim-nodejs-complete')
-" GLSL
-call dein#add('tikhomirov/vim-glsl', { 'autoload': { 'filetypes': 'glsl' }})
-" Go
-call dein#add('fatih/vim-go', { 'autoload': { 'filetypes': 'go' }})
-
-if has('nvim')
-  call dein#add('zchee/deoplete-go', { 'autoload': { 'filetypes': 'go' }, 'build': {'unix':'make', 'mac':'make'}})
-endif
-
-" Python
-call dein#add('davidhalter/jedi-vim', { 'autoload': { 'filetypes': 'python' }})
-call dein#add('andviro/flake8-vim', { 'autoload': { 'filetypes': 'python' }})
-call dein#add('hynek/vim-python-pep8-indent', { 'autoload': { 'filetypes': 'python' }})
-call dein#add('jmcantrell/vim-virtualenv', { 'autoload': { 'filetypes': 'python' }})
-
-" Dockerfile
-call dein#add('ekalinin/Dockerfile.vim', { 'autoload': { 'filetypes': 'dockerfile' }})
-" CSS3
-call dein#add('hail2u/vim-css3-syntax', { 'autoload': { 'filetypes': 'css' }})
-" Jade
-call dein#add('digitaltoad/vim-pug', { 'autoload': { 'filetypes': 'pug' }})
-" handlebars
-call dein#add('mustache/vim-mustache-handlebars', { 'autoload': { 'filetypes': 'handlebars' }})
-" Stylus
-call dein#add('wavded/vim-stylus', { 'autoload': { 'filetypes': 'stylus' }})
-" Less
-call dein#add('groenewege/vim-less', { 'autoload': { 'filetypes': 'less' }})
-" Yaml
-call dein#add('stephpy/vim-yaml', { 'autoload': { 'filetypes': 'yaml' }})
-" Toml
-call dein#add('cespare/vim-toml', { 'autoload': { 'filetypes': 'yaml' }})
-" Handlebars
-" Markdown
-call dein#add('tpope/vim-markdown', { 'autoload': { 'filetypes': 'markdown' }})
-" Markdown preview
-call dein#add('kannokanno/previm', { 'autoload': { 'filetypes': 'markdown' }})
-" Editor config
-call dein#add('editorconfig/editorconfig-vim')
-" Protocolbuffers
-call dein#add('uarun/vim-protobuf', { 'autoload': { 'filetypes': 'protobuf' }})
-" Terraform
-call dein#add('bkad/vim-terraform', { 'autoload': { 'filetypes': 'terraform' }})
-" nginx
-call dein#add('fatih/vim-nginx')
-" Gradle
-call dein#add('tfnico/vim-gradle', { 'autoload': { 'filetypes': 'gradle' }})
-" APIBluePrint
-call dein#add('kylef/apiblueprint.vim', { 'autoload': { 'filetypes': 'apiblueprint' }})
-
-" Color Schemes
-call dein#add('w0ng/vim-hybrid')
+let g:vim_dir   = expand('~/.vim')
+let s:toml      = g:vim_dir . '/dein.toml'
+let s:toml_lazy = g:vim_dir . '/dein_lazy.toml'
+call dein#load_toml(s:toml,      { 'lazy': 0 })
+call dein#load_toml(s:toml_lazy, { 'lazy': 1 })
 
 call dein#end()
 call dein#save_state()
@@ -493,7 +380,7 @@ let g:syntastic_typescript_checkers = ['tslint']
 syntax enable
 set t_Co=256
 set background=dark
-let g:hybrid_use_iTerm_colors = 1
+let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
 
 " Adjust omnifunc pop menu

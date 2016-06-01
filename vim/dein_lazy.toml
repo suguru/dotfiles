@@ -1,0 +1,103 @@
+
+# ===== Completion =====
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+
+#[[plugins]]
+#repo = 'Shougo/neocomplete'
+#on_i = 1
+#if   = '''! has('nvim') '''
+
+[[plugins]]
+repo  = 'marijnh/tern_for_vim'
+on_ft = ['javascript']
+hook_post_update = '''
+let g:dein#plugin.build = 'npm install'
+'''
+
+# ====== Programming Languages =====
+
+[[plugins]]
+repo  = 'pangloss/vim-javascript'
+on_ft = ['javascript']
+
+[[plugins]]
+repo  = 'elzr/vim-json'
+on_ft = ['json']
+
+[[plugins]]
+repo  = 'mxw/vim-jsx'
+on_ft = ['javascript']
+
+[[pluins]]
+repo  = 'leafgarland/typescript-vim'
+on_ft = ['typescript']
+
+[[plugins]]
+repo  = 'Quramy/tsuquyomi'
+on_ft = ['typescript']
+
+[[plugins]]
+repo  = 'fatih/vim-go'
+on_ft = ['go']
+
+[[plugins]]
+repo  = 'zchee/deoplete-go'
+on_ft = ['go']
+hook_post_update = '''
+    let g:dein#plugin.build = 'make'
+'''
+
+[[plugins]]
+repo  = 'ekalinin/Dockerfile.vim'
+on_ft = ['dockerfile']
+
+[[pugins]]
+repo  = 'hail2u/vim-css3-syntax'
+on_ft = ['css']
+
+[[plugins]]
+repo  = 'digitaltoad/vim-pug'
+on_ft = ['pug']
+
+[[plugins]]
+repo  = 'stephpy/vim-yaml'
+on_ft = ['yaml']
+
+[[plugins]]
+repo  = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo  = 'tpope/vim-markdown'
+on_ft = ['markdown']
+
+[[plugins]]
+repo  = 'kannokanno/previm'
+on_ft = ['markdown']
+
+[[plugins]]
+repo  = 'editorconfig/editorconfig-vim'
+on_ft = ['editorconfig']
+
+[[plugins]]
+repo  = 'uarun/vim-protobuf'
+on_ft = 'protobuf'
+
+[[plugins]]
+repo  = 'bkad/vim-terraform'
+on_ft = ['terraform']
+
+[[plugins]]
+repo  = 'fatih/vim-nginx'
+
+[[plugins]]
+repo  = 'tfnico/vim-gradle'
+on_ft = ['gradle']
+
+[[plugins]]
+repo  = 'kylef/apiblueprint.vim'
+on_ft = ['apiblueprint']
+
