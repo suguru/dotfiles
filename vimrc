@@ -2,30 +2,88 @@ autocmd!
 
 filetype off
 
-set runtimepath+=~/.vim/dein.vim
+"set runtimepath+=~/.vim/dein.vim
+"let s:dein_dir = expand('~/.vim/dein_cache')
+"let s:dein_dir = expand('~/.vim/dein_cache_vim')
+"endif
+"if dein#load_state(s:dein_dir)
+"  call dein#begin(s:dein_dir)
+"  let g:vim_dir   = expand('~/.vim')
+"  let s:toml      = g:vim_dir . '/dein.toml'
+"  let s:toml_lazy = g:vim_dir . '/dein_lazy.toml'
+"  call dein#load_toml(s:toml,      { 'lazy': 0 })
+"  call dein#load_toml(s:toml_lazy, { 'lazy': 1 })
+"  call dein#end()
+"  call dein#save_state()
+"endif
+"if dein#check_install()
+"  call dein#install()
+"endif
 
-let s:dein_dir = expand('~/.vim/dein_cache')
-if !has('nvim')
-  let s:dein_dir = expand('~/.vim/dein_cache_vim')
-endif
+call plug#begin('~/.vim/plugged')
 
-if dein#load_state(s:dein_dir)
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/deoplete.nvim'
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'LeafCage/yankround.vim'
+Plug 'tyru/open-browser.vim'
 
-call dein#begin(s:dein_dir)
+Plug 'osyo-manga/vim-over'
+Plug 'mhinz/vim-grepper'
 
-let g:vim_dir   = expand('~/.vim')
-let s:toml      = g:vim_dir . '/dein.toml'
-let s:toml_lazy = g:vim_dir . '/dein_lazy.toml'
-call dein#load_toml(s:toml,      { 'lazy': 0 })
-call dein#load_toml(s:toml_lazy, { 'lazy': 1 })
+" Theme
+Plug 'w0ng/vim-hybrid'
 
-call dein#end()
-call dein#save_state()
-endif
+" Programming languagees
+"
+Plug 'editorconfig/editorconfig-vim'
 
-if dein#check_install()
-  call dein#install()
-endif
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
+Plug 'elzr/vim-json', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
+
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'kannokanno/previm', { 'for': 'markdown' }
+
+Plug 'uarun/vim-protobuf', { 'for': 'protobuf' }
+
+Plug 'bkad/vim-terraform', { 'for': 'terraform' }
+
+Plug 'fatih/vim-nginx'
+
+Plug 'tfnico/vim-gradle', { 'for': 'gradle' }
+
+Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
+
+call plug#end()
 
 " ====================
 " generic options
@@ -80,6 +138,8 @@ endif
 " search
 " ====================
 set ignorecase
+set incsearch
+set nohlsearch
 
 " ====================
 " clip board
@@ -242,7 +302,7 @@ let g:acp_enableAtStartup = 0
 if has('nvim')
   " Use deoplete
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_smart_case = 1
+  " let g:deoplete#enable_smart_case = 1
   let g:deoplete#enable_ignore_case = 1
   let g:deoplete#auto_completion_start_length=2
   let g:deoplete#sources#syntax#min_keyword_length = 1
@@ -252,7 +312,6 @@ if has('nvim')
 "  inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
 
   let g:deoplete#sources#go#align_class = 1
-
 
 else
 
@@ -332,6 +391,12 @@ autocmd FileType go setlocal completeopt+=noinsert,noselect
 " Javascript
 " ====================
 let g:jsx_ext_required = 0
+
+" ====================
+" Python
+" ====================
+let g:jedi#force_py_version    = 3
+let g:virtualenv_auto_activate = 1
 
 " ====================
 " Flowtype

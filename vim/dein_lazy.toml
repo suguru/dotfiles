@@ -3,7 +3,6 @@
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-on_i = 1
 
 #[[plugins]]
 #repo = 'Shougo/neocomplete'
@@ -11,11 +10,15 @@ on_i = 1
 #if   = '''! has('nvim') '''
 
 [[plugins]]
-repo  = 'marijnh/tern_for_vim'
+repo  = 'ternjs/tern_for_vim'
 on_ft = ['javascript']
 hook_post_update = '''
 let g:dein#plugin.build = 'npm install'
 '''
+
+[[plugins]]
+repo  = 'carlitux/deoplete-ternjs'
+on_ft = ['javascript']
 
 # ====== Programming Languages =====
 
@@ -49,6 +52,22 @@ on_ft = ['go']
 hook_post_update = '''
     let g:dein#plugin.build = 'make'
 '''
+
+[[plugins]]
+repo = 'jmcantrell/vim-virtualenv'
+on_ft = ['python']
+
+[[plugins]]
+repo  = 'davidhalter/jedi-vim'
+on_ft = ['python']
+
+[[plugins]]
+repo  = 'lambdalisue/vim-pyenv'
+on_ft = ['python']
+
+[[plugins]]
+repo  = 'zchee/deoplete-jedi'
+of_ft = ['python']
 
 [[plugins]]
 repo  = 'ekalinin/Dockerfile.vim'

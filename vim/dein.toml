@@ -15,7 +15,9 @@ hook_post_update = '''
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
-# CtrlP
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
