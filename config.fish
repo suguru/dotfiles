@@ -6,11 +6,17 @@
 
 # Load oh-my-fish configuration.
 # source $OMF_PATH/init.fish
+if test -e ~/.config/fish/env.fish
+  source ~/.config/fish/env.fish
+end
 
 set -gx GCLOUD_SDK_PATH "/usr/local/google-cloud-sdk"
 
 set -gx GOPATH "$HOME/go"
-set -gx PATH $GOPATH/bin $GCLOUD_SDK_PATH/bin $PATH
+set -gx PATH $GOPATH/bin $PATH $GCLOUD_SDK_PATH/bin $HOME/anaconda/bin
+
+set -gx LC_ALL en_US.UTF-8
+set -gx LANG en_US.UTF-8
 
 alias vim=nvim
 alias vi=nvim
