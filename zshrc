@@ -71,3 +71,4 @@ if [ -e /usr/local/google-cloud-sdk ]; then
   source /usr/local/google-cloud-sdk/completion.zsh.inc
 fi
 
+export PATH=$HOME/bin:$PATH
