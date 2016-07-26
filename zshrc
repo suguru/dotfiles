@@ -12,6 +12,7 @@
 # zplug zsh plugin manager
 source ~/.zplug/zplug
 zplug "zplug/zplug"
+zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
@@ -47,7 +48,8 @@ export LS_COLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 export GOPATH=$HOME/go
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$HOME/anaconda/bin:$PATH:$GOPATH/bin
+export PATH=~/.pyenv/shims:$PATH
 
 export XDG_CONFIG_HOME=~/.config
 
