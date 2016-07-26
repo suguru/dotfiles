@@ -23,7 +23,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/deoplete.nvim'
+
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
@@ -42,6 +42,13 @@ Plug 'w0ng/vim-hybrid'
 
 " Programming languagees
 "
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
+Plug 'Shougo/deoplete.nvim'
+
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
@@ -82,6 +89,12 @@ Plug 'fatih/vim-nginx'
 Plug 'tfnico/vim-gradle', { 'for': 'gradle' }
 
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
+
+Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
+Plug 'wdalmut/vim-phpunit', { 'for': 'php' }
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
+Plug 'nelsyeung/twig.vim', { 'for': 'twig' }
 
 call plug#end()
 
@@ -380,6 +393,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType go setlocal completeopt+=noinsert,noselect
+autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 
 " ====================
