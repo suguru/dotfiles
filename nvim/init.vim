@@ -19,6 +19,7 @@ filetype off
 "if dein#check_install()
 "  call dein#install()
 "endif
+let g:python_host_prog = '/usr/local/bin/python3'
 
 call plug#begin('~/.vim/plugged')
 
