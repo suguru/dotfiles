@@ -37,6 +37,11 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.config/zsh_history
 
+# key bind for history search
+zmodload zsh/terminfo
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+
 source $HOME/.zshenv
 
 autoload -U compinit

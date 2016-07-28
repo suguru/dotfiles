@@ -34,9 +34,9 @@ Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'LeafCage/yankround.vim'
 Plug 'tyru/open-browser.vim'
-
 Plug 'osyo-manga/vim-over'
 Plug 'mhinz/vim-grepper'
+Plug 'mileszs/ack.vim'
 
 " Theme
 Plug 'w0ng/vim-hybrid'
@@ -396,6 +396,12 @@ autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType go setlocal completeopt+=noinsert,noselect
 autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
+" ===================
+" ACK
+" ===================
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " ====================
 " Go lang
