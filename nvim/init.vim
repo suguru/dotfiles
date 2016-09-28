@@ -19,7 +19,7 @@ filetype off
 "if dein#check_install()
 "  call dein#install()
 "endif
-let g:python_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 call plug#begin('~/.vim/plugged')
 
@@ -69,6 +69,8 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
+Plug 'keith/swift.vim', { 'for': 'swift' }
+
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
 
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
@@ -78,8 +80,9 @@ Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'kannokanno/previm', { 'for': 'markdown' }
+Plug 'godlygeek/tabular'
 
 Plug 'uarun/vim-protobuf', { 'for': 'protobuf' }
 
@@ -91,10 +94,10 @@ Plug 'tfnico/vim-gradle', { 'for': 'gradle' }
 
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 
-Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
-Plug 'wdalmut/vim-phpunit', { 'for': 'php' }
+" Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
+" Plug 'wdalmut/vim-phpunit', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
+" Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
 Plug 'nelsyeung/twig.vim', { 'for': 'twig' }
 
 call plug#end()
@@ -420,9 +423,9 @@ let g:jedi#force_py_version    = 3
 let g:virtualenv_auto_activate = 1
 
 " ====================
-" Flowtype
+" Markdown
 " ====================
-let g:flow#autoclose = 1
+let g:vim_markdown_folding_disabled = 1
 
 " ====================
 " Typescript

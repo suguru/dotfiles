@@ -3,11 +3,9 @@
 #
 
 # Source zim
-#if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
-#  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
-#fi
-# User configuration sourced by interactive shells
-#
+# if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+#   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
+# fi
 
 # zplug zsh plugin manager
 source ~/.zplug/zplug
@@ -17,12 +15,9 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
-
 zplug "sindresorhus/pure"
 zplug "chrissicool/zsh-256color"
-
 zplug "felixr/docker-zsh-completion"
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -33,8 +28,8 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.config/zsh_history
 
 # key bind for history search
@@ -54,6 +49,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 export GOPATH=$HOME/go
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin
+export PATH=/usr/local/google-cloud-sdk/bin:$PATH
+export PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
 export PATH=~/.pyenv/shims:$PATH
 
 export XDG_CONFIG_HOME=~/.config

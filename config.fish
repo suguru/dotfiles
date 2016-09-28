@@ -20,3 +20,4 @@ set -gx LANG en_US.UTF-8
 
 alias vim=nvim
 alias vi=nvim
+alias vault=/usr/local/bin/vault
