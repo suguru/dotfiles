@@ -1,21 +1,21 @@
 #
 # User configuration sourced by interactive shells
 #
-
-# Source zim
-# if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
-#   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
-# fi
+if [[ ! -d ~/.zplug ]];then
+  git clone https://github.com/zplug/zplug ~/.zplug
+fi
 
 # zplug zsh plugin manager
-source ~/.zplug/zplug
+source ~/.zplug/init.zsh
+
 zplug "zplug/zplug"
 zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
-zplug "sindresorhus/pure"
+zplug "b4b4r07/enhancd"
+# zplug "sindresorhus/pure"
 zplug "chrissicool/zsh-256color"
 zplug "felixr/docker-zsh-completion"
 # Install plugins if there are plugins that have not been installed
@@ -37,7 +37,13 @@ zmodload zsh/terminfo
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
 
-source $HOME/.zshenv
+if [ -e $HOME/.zshenv ]; then
+  source $HOME/.zshenv
+fi
+
+if [ -e /usr/local/share/zsh/site-functions ]; then
+  source /usr/local/share/zsh/site-functions
+fi
 
 autoload -U compinit
 compinit
@@ -47,11 +53,18 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# indicator for vi mode
+zle-keymap-select () {
+  VI_KEYMAP=$KEYMAP
+  zle reset-prompt
+  zle -R
+}
+zle -N zle-keymap-select
+
+export GO111MODULE=on
 export GOPATH=$HOME/go
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin
-export PATH=/usr/local/google-cloud-sdk/bin:$PATH
 export PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
-export PATH=~/.pyenv/shims:$PATH
 
 export XDG_CONFIG_HOME=~/.config
 
@@ -76,3 +89,5 @@ if [ -e /usr/local/google-cloud-sdk ]; then
 fi
 
 export PATH=$HOME/bin:$PATH
+
+eval $(starship init zsh)
