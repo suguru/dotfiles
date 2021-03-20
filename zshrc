@@ -8,9 +8,6 @@ fi
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-# zplug zsh plugin manager
-source ~/.zplug/init.zsh
-
 zplug "zplug/zplug"
 zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting"
