@@ -5,6 +5,9 @@ if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug ~/.zplug
 fi
 
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
 # zplug zsh plugin manager
 source ~/.zplug/init.zsh
 
@@ -48,8 +51,6 @@ fi
 autoload -U compinit
 compinit
 export LSCOLORS=exfxcxdxbxegedabagacad
-#export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-#zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 export LS_COLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
@@ -63,15 +64,21 @@ zle -N zle-keymap-select
 
 export GO111MODULE=on
 export GOPATH=$HOME/go
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin
+export GO111MODULE=on
+export GOPROXY=https://proxy.golang.org
+
+export FLUTTERPATH=$HOME/flutter
+
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin:$FLUTTERPATH/bin
+export PATH=/usr/local/google-cloud-sdk/bin:$PATH
 export PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH
 
 export XDG_CONFIG_HOME=~/.config
 
 export ANT_ROOT='/usr/local/opt/ant/bin'
-export NDK_ROOT='/usr/local/opt/android-ndk'
-export ANDROID_HOME='/usr/local/opt/android-sdk'
-export ANDROID_SDK_ROOT='/usr/local/opt/android-sdk'
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_ROOT=$ANDROID_HOME
+export PATH=$ANDROID_HOME/platform-tools:$PATH
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -90,4 +97,13 @@ fi
 
 export PATH=$HOME/bin:$PATH
 
-eval $(starship init zsh)
+eval "$(starship init zsh)"
+
+# /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/gcloud
+export GCLOUD_PATH=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
+#
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "/${GCLOUD_PATH}/path.zsh.inc" ]; then . "${GCLOUD_PATH}/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "/${GCLOUD_PATH}/completion.zsh.inc" ]; then . "${GCLOUD_PATH}/completion.zsh.inc"; fi
