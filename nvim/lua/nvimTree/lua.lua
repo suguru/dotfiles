@@ -26,11 +26,11 @@ vim.g.nvim_tree_icons = {
     default = " ",
     symlink = " ",
     git = {
-        unstaged = "✗",
+        unstaged = "x",
         staged = "✓",
         unmerged = "",
         renamed = "➜",
-        untracked = "★"
+        untracked = "*"
     },
     folder = {
         default = "",

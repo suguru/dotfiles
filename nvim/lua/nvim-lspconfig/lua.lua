@@ -47,6 +47,7 @@ require "lspconfig".gopls.setup {
 }
 require "lspconfig".terraformls.setup{}
 
+
 function goimports(timeoutms)
   local context = { source = { organizeImports = true } }
   vim.validate { context = { context, "t", true } }
@@ -77,8 +78,29 @@ function goimports(timeoutms)
   end
 end
 
+-- modify default textDocument/hover to hover() on functions.
+-- https://np.reddit.com/r/backtickbot/comments/kd282x/httpsnpredditcomrneovimcommentskctm6kneovim_lsp/
+vim.lsp.handlers['textDocument/hover'] = function(_, method, result)
+  vim.lsp.util.focusable_float(method, function()
+    if not (result and result.contents) then
+      return
+    end
+    local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+    markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+    if vim.tbl_isempty(markdown_lines) then
+      return
+    end
+    local bufnr, winnr = vim.lsp.util.fancy_floating_markdown(markdown_lines, {
+      pad_left = 1; pad_right = 1;
+    })
+    vim.lsp.util.close_preview_autocmd({"CursorMoved", "BufHidden"}, winnr)
+    return bufnr, winnr
+  end)
+end
+
 vim.api.nvim_exec(
     [[
+autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufWritePre *.go lua goimports(1000)
  ]],
     false

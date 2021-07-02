@@ -85,12 +85,17 @@ alias ls="ls -G"
 alias ll="ls -lh"
 alias vi="nvim"
 alias vim="nvim"
+alias k="kubectl"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -e /usr/local/google-cloud-sdk ]; then
   source /usr/local/google-cloud-sdk/path.zsh.inc
   source /usr/local/google-cloud-sdk/completion.zsh.inc
 fi
+
+# if [ -e /usr/local/bin/pyenv ]; then
+#   eval "$(pyenv init -)"
+# fi
 
 export PATH=$HOME/bin:$PATH
 
@@ -104,3 +109,9 @@ if [ -f "/${GCLOUD_PATH}/path.zsh.inc" ]; then . "${GCLOUD_PATH}/path.zsh.inc"; 
 
 # The next line enables shell command completion for gcloud.
 if [ -f "/${GCLOUD_PATH}/completion.zsh.inc" ]; then . "${GCLOUD_PATH}/completion.zsh.inc"; fi
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.poetry/bin:$PATH"
