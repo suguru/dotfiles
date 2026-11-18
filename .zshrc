@@ -44,6 +44,9 @@ export PATH="$PNPM_HOME:$PATH"
 
 export GOPRIVATE="github.com/LayerXcom/*"
 
+export DARWIN_USER=$(whoami)
+export DARWIN_HOST=$(hostname -s)
+
 PATH=$HOME/.bin:$HOME/go/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$PATH
 
 eval "$(starship init zsh)"
