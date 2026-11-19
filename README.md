@@ -1,91 +1,55 @@
 # dotfiles for private environment
 
-# Setup machine
-
-### homebrew
+# clone the repository
 
 ```
-/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
-```
-
-### apps
-
-```
-brew install iterm2 \
-  visual-studio-code \
-  docker \
-  notion \
-  sequel-ace \
-  google-japanese-ime \
-  slack \
-  raycast \
-  warp \
-  --cask
-```
-
-### tools
-
-```
-brew install gh starship neovim go node rust corepack awscli zsh-completions
-brew install mysql --client-only
-```
-
-### fonts
-
-```
-brew tap homebrew/cask-fonts
-brew install --cask font-hack-nerd-font
-```
-
-### clone this repo
-
-```bash
 gh repo clone suguru/dotfiles
+sudo ln -s /Users/suguru/dotfiles/nix-darwin /etc/nix-darwin
 ```
 
-### symlink dotfiles
+# nix
 
-```bash
-ln -s -F ~/dotfiles/.zshrc ~/.zshrc
+## Install Nix
+
+```sh
+curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh
 ```
 
-### zinit
-
-```bash
-sh -c "$(curl -fsSL https://git.io/zinit-install)"
-source ~/.zshrc
-zinit self-update
-```
-
-### astovim
-
-```bash
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-nvim +PackerSync
-``` 
-astovim config
-
-```bash
-ln -s ~/dotfiles/astovim ~/.config/nvim/lua/user
-```
-
-### generate ssh keys
-
-```bash
-ssh-keygen -t ed25519 -C "snamura@gmail.com"
-eval "$(ssh-agent -s)"
-```
-
-modify `~/.ssh/config`
+Check the version
 
 ```
-Host *
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_ed25519
+nix --version
 ```
 
-### Key repeating configuration
+## Install nix-darwin
 
-```bash
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool falsedefaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 ```
+sudo mkdir -p /etc/nix-darwin
+sudo chown "$(id -un):$(id -gn)" /etc/nix-darwin
+cd /etc/nix-darwin
+
+nix --extra-experimental-features 'nix-command flakes' flake init \
+  -t github:nix-darwin/nix-darwin/nix-darwin-26.05
+
+sudo nix --extra-experimental-features 'nix-command flakes' run \
+  github:nix-darwin/nix-darwin/nix-darwin-26.05#darwin-rebuild -- \
+  switch --flake /etc/nix-darwin
+```
+Confirm
+
+```
+sudo darwin-rebuild switch --flake /etc/nix-darwin
+```
+
+## Install devenv
+
+```
+nix-env --install --attr bashInteractive -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+nix-env --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+```
+
+## Install home-manager
+
+```
+```
+
