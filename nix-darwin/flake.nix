@@ -1,22 +1,25 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "nix-darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = input@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
         pkgs.vim
-        pkgs.devenv
       ];
 
       # Necessary for using flakes on this system.
@@ -45,10 +48,9 @@
         home-manager.darwinModules.home-manager
         {
           users.users.suguru.home = "/Users/suguru";
-
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-	  home-manager.backupFileExtension = "bak";
+	        home-manager.backupFileExtension = "bak";
           home-manager.users.suguru = ./home.nix;
         }
       ];

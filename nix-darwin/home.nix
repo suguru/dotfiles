@@ -5,7 +5,6 @@
     stateVersion = "26.05"; # Please read the comment before changing.
 
     packages = with pkgs; [
-      config.programs.home-manager.package
       git
       fzf
       jq
@@ -21,6 +20,7 @@
       lazydocker
       worktrunk
       mise
+      devenv
       zed-editor
     ];
 
@@ -67,6 +67,9 @@
         ".." = "cd ..";
         "--" = "cd --";
       };
+      initContent = ''
+        eval "$(devenv hook zsh)"
+      '';
     };
     starship = {
       enable = true;
@@ -81,10 +84,6 @@
         };
       };
     };
-    #devenv = {
-    #  enable = true;
-    #  enableZshIntegration = true;
-    #};
     lazygit = {
       enable = true;
       settings = {

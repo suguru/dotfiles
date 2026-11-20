@@ -37,19 +37,10 @@ sudo nix --extra-experimental-features 'nix-command flakes' run \
 ```
 Confirm
 
+Then build and apply nix-darwin to the machine
+
 ```
 sudo darwin-rebuild switch --flake /etc/nix-darwin
 ```
 
-## Install devenv
-
-```
-nix-env --install --attr bashInteractive -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
-nix-env --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
-```
-
-## Install home-manager
-
-```
-```
 
