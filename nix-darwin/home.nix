@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgsUnstable, lib, ... }:
 
 {
   home = {
@@ -20,7 +20,7 @@
       lazydocker
       worktrunk
       mise
-      devenv
+      pkgsUnstable.devenv
       zed-editor
     ];
 

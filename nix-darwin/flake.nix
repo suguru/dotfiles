@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,8 +14,9 @@
     };
   };
 
-  outputs = input@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = input@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager }:
   let
+    system = "aarch64-darwin";
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -36,7 +38,11 @@
       system.stateVersion = 6;
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
+    };
+    pkgsUnstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
     };
   in
   {
@@ -48,6 +54,9 @@
         home-manager.darwinModules.home-manager
         {
           users.users.suguru.home = "/Users/suguru";
+          home-manager.extraSpecialArgs = {
+            inherit pkgsUnstable;
+          };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 	        home-manager.backupFileExtension = "bak";
